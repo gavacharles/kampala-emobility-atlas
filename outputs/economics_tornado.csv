@@ -1,0 +1,11 @@
+parameter,saving_at_low,saving_at_high,swing,base
+petrol_km_per_l,9505.0,3741.0,5763.0,5903.0
+daily_km,4209.0,9628.0,5419.0,5903.0
+petrol_price_ugx_per_l,3384.0,6471.0,3088.0,5903.0
+swap_price_ugx_per_full,8358.0,5830.0,2528.0,5903.0
+petrol_maintenance_ugx_per_day,4903.0,7403.0,2500.0,5903.0
+battery_range_km,4622.0,6543.0,1921.0,5903.0
+electric_maintenance_ugx_per_day,6403.0,4903.0,1500.0,5903.0
+swap_wait_min,6113.0,5397.0,716.0,5903.0
+rider_earnings_ugx_per_hour,5999.0,5758.0,241.0,5903.0
+detour_speed_kmh,5903.0,5903.0,0.0,5903.0

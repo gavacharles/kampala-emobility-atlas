@@ -1,0 +1,914 @@
+<title>Kampala E-Mobility Atlas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field atlas: one large canvas map with its controls, then the rider-economics workbench below. */
+:root {
+  --bg: #f6f7f5;
+  --surface: #fcfcfb;
+  --ink: #15171a;
+  --ink-2: #4c5157;
+  --ink-3: #7b8087;
+  --rule: #dfe2e0;
+  --grid: #eceeec;
+  --accent: #2a78d6;
+  --petrol: #eb6834;
+  --electric: #2a78d6;
+  --cell-empty: #e6e8e6;
+  --road: rgba(21, 23, 26, 0.32);
+  --road-minor: rgba(21, 23, 26, 0.16);
+  --site: #15171a;
+  --site-ring: #fcfcfb;
+  --station: #d03b3b;
+  --good: #0ca30c;
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-data: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121315; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --ink-3: #8d8c85;
+    --rule: #2e2f2d; --grid: #262725; --accent: #3987e5; --petrol: #d95926; --electric: #3987e5;
+    --cell-empty: #262725; --road: rgba(240, 239, 236, 0.38); --road-minor: rgba(240, 239, 236, 0.18);
+    --site: #f0efec; --site-ring: #1a1a19; --station: #e66767; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121315; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --ink-3: #8d8c85;
+  --rule: #2e2f2d; --grid: #262725; --accent: #3987e5; --petrol: #d95926; --electric: #3987e5;
+  --cell-empty: #262725; --road: rgba(240, 239, 236, 0.38); --road-minor: rgba(240, 239, 236, 0.18);
+  --site: #f0efec; --site-ring: #1a1a19; --station: #e66767; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font: 16px/1.5 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 4.6vw, 3.1rem); line-height: 1.05; font-weight: 700; }
+h2 { font-size: 1.55rem; font-weight: 700; }
+h3 { font-size: 1.02rem; font-weight: 500; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 500 0.72rem/1 var(--f-data); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.lede { color: var(--ink-2); font-size: 1.08rem; }
+.mono { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 14px; }
+.flag { display: inline-flex; gap: 8px; align-items: center; font: 500 0.78rem/1.3 var(--f-data); color: var(--ink-2);
+  border: 1px solid var(--rule); border-radius: 4px; padding: 6px 10px; width: fit-content; background: var(--surface); }
+.flag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--petrol); flex: none; }
+
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.kpi { background: var(--surface); padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.kpi .v { font: 500 1.7rem/1.1 var(--f-data); font-variant-numeric: tabular-nums; }
+.kpi .l { color: var(--ink-2); font-size: 0.9rem; line-height: 1.35; }
+
+section { display: grid; gap: 16px; }
+.section-head { display: grid; gap: 6px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { font: 500 0.82rem/1 var(--f-body); border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2);
+  padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+.chip:hover { border-color: var(--ink-3); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip:focus-visible, .btn:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { font: 600 0.85rem/1 var(--f-body); border: 0; background: var(--accent); color: #fff; padding: 9px 14px; border-radius: 6px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; }
+.btn.secondary { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+.btn svg { width: 12px; height: 12px; fill: currentColor; }
+
+.atlas { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start; }
+.mapbox { position: relative; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+canvas#map { display: block; width: 100%; touch-action: none; }
+.map-overlay { position: absolute; left: 12px; top: 12px; display: grid; gap: 4px; pointer-events: none; }
+.map-overlay .big { font: 700 2.2rem/1 var(--f-display); }
+.map-overlay .small { font: 500 0.78rem/1.3 var(--f-data); color: var(--ink-2); }
+.legend { position: absolute; left: 12px; bottom: 12px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+  padding: 8px 10px; display: grid; gap: 6px; font: 0.75rem/1.2 var(--f-data); color: var(--ink-2); max-width: calc(100% - 24px); }
+.legend .bar { height: 8px; width: 200px; max-width: 100%; border-radius: 2px; }
+.legend .ends { display: flex; justify-content: space-between; gap: 12px; }
+.legend .keys { display: flex; flex-wrap: wrap; gap: 10px; }
+.legend .keys span { display: inline-flex; align-items: center; gap: 5px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 0.78rem/1.4 var(--f-data);
+  padding: 8px 10px; border-radius: 4px; white-space: nowrap; z-index: 2; }
+.tip b { font-weight: 500; color: var(--bg); }
+
+.side { display: grid; gap: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; display: grid; gap: 10px; min-width: 0; }
+.panel p, .note { color: var(--ink-2); font-size: 0.92rem; }
+.range { display: grid; gap: 4px; }
+.range label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.88rem; color: var(--ink-2); }
+.range label .mono { color: var(--ink); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+svg text { font-family: var(--f-data); font-size: 11px; fill: var(--ink-3); }
+svg .t-ink { fill: var(--ink); }
+svg .t-2 { fill: var(--ink-2); }
+
+.econ { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; align-items: start; }
+.charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.saving-hero { display: grid; gap: 2px; }
+.saving-hero .v { font: 700 2.6rem/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.saving-hero .l { color: var(--ink-2); font-size: 0.9rem; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font: 500 0.72rem/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+td.num { font-family: var(--f-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tag { font: 500 0.68rem/1 var(--f-data); padding: 3px 6px; border-radius: 3px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.tag.assume { border-color: var(--petrol); color: var(--petrol); }
+.caveats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.caveats div { display: grid; gap: 6px; align-content: start; }
+.caveats p { font-size: 0.92rem; color: var(--ink-2); }
+footer { color: var(--ink-3); font-size: 0.82rem; display: grid; gap: 6px; border-top: 1px solid var(--rule); padding-top: 16px; }
+footer a { color: var(--ink-2); }
+
+@media (max-width: 920px) {
+  .atlas, .econ { grid-template-columns: minmax(0, 1fr); }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .caveats { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .charts { grid-template-columns: minmax(0, 1fr); }
+  .map-overlay .big { font-size: 1.6rem; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Greater Kampala · 1 km grid · October 2026</span>
+    <h1>Where electric bodas and electric cars can take hold, and where their swap stations and chargers should go</h1>
+    <p class="lede">A public-data atlas of EV adoption suitability across Greater Kampala: 60 proposed battery-swap sites for e-bodas, 30 proposed fast-charging sites for e-cars, the economics for riders, drivers and car owners, and the terrain, flood and grid checks on every site. Scores rank places against each other; they are not adoption probabilities.</p>
+    <span class="flag">Built without operator data. Only <span id="nStations" class="mono">3</span>&nbsp;swap/charging stations are mapped in OpenStreetMap, and Uganda imported only 17 fully electric cars from 2022 to April 2024.</span>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Atlas</span>
+      <h2>The map</h2>
+    </div>
+    <div class="controls" role="group" aria-label="Map layer">
+      <button class="chip" data-layer="boda">E-boda suitability</button>
+      <button class="chip" data-layer="car">E-car suitability</button>
+      <button class="chip" data-layer="boda_rob">E-boda robustness</button>
+      <button class="chip" data-layer="pop">Population</button>
+      <button class="chip" data-layer="growth">Population growth</button>
+      <button class="chip" data-layer="wealth">Housing wealth proxy</button>
+      <button class="chip" data-layer="home">Home-charging potential</button>
+      <button class="chip" data-layer="saving">E-boda rider saving / day</button>
+      <button class="chip" data-layer="ridehail">E-ride-hail saving / year</button>
+      <button class="chip" id="satToggle" aria-pressed="false">Satellite basemap</button>
+    </div>
+    <div class="atlas">
+      <div class="mapbox" id="mapbox">
+        <canvas id="map" aria-label="Map of Greater Kampala grid cells coloured by the selected layer"></canvas>
+        <div class="map-overlay"><span class="big mono" id="ovBig"></span><span class="small" id="ovSmall"></span></div>
+        <div class="legend" id="legend"></div>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+      <div class="side">
+        <div class="panel">
+          <h3>Build a network</h3>
+          <div class="controls" role="group" aria-label="Network">
+            <button class="chip" data-net="boda" aria-pressed="true">E-boda swap sites</button>
+            <button class="chip" data-net="car" aria-pressed="false">E-car fast chargers</button>
+          </div>
+          <p id="netDesc"></p>
+          <div class="controls">
+            <button class="btn" id="playNet"><svg viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z"/></svg><span>Play build-out</span></button>
+            <button class="btn secondary" id="resetNet">Reset</button>
+          </div>
+          <div class="range">
+            <label for="kSlider">Sites built <span class="mono" id="kVal">0</span></label>
+            <input type="range" id="kSlider" min="0" max="60" value="0">
+          </div>
+          <div class="chart" id="coverChart"></div>
+        </div>
+        <div class="panel">
+          <h3>Watch the city grow</h3>
+          <p>WorldPop population per km², morphing from the 2020 estimate through 2025 to the 2030 projection.</p>
+          <div class="controls">
+            <button class="btn" id="playPop"><svg viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z"/></svg><span>Play 2020 → 2030</span></button>
+          </div>
+          <div class="range">
+            <label for="yearSlider">Year <span class="mono" id="yearVal">2025</span></label>
+            <input type="range" id="yearSlider" min="2020" max="2030" step="0.1" value="2025">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Hover a cell for its values. Grey cells have too little mapped activity or population to score. E-boda rider saving assumes the first 30 swap sites are built; e-ride-hail saving assumes the first 10 fast chargers. Drivers detour to the nearest site by road. Satellite: Sentinel-2, <span id="satDate"></span>.</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Rider economics</span>
+      <h2>Does an e-boda pay for a Kampala rider?</h2>
+      <p class="lede">Daily running cost of a petrol boda against an e-boda on pay-per-charge battery swapping. Move the sliders to test your own numbers. Bike purchase and loan payments are not included.</p>
+    </div>
+    <div class="econ">
+      <div class="panel">
+        <div class="saving-hero"><span class="v mono" id="saveBig">–</span><span class="l" id="saveLbl">saved per day with an e-boda</span></div>
+        <div class="range"><label for="sPetrol">Petrol price, UGX/L <span class="mono" id="vPetrol"></span></label><input type="range" id="sPetrol" min="4000" max="8000" step="50"></div>
+        <div class="range"><label for="sKm">Distance ridden per day, km <span class="mono" id="vKm"></span></label><input type="range" id="sKm" min="30" max="150" step="5"></div>
+        <div class="range"><label for="sEff">Petrol bike economy, km/L <span class="mono" id="vEff"></span></label><input type="range" id="sEff" min="25" max="55" step="1"></div>
+        <div class="range"><label for="sSwap">Swap price per full battery, UGX <span class="mono" id="vSwap"></span></label><input type="range" id="sSwap" min="4000" max="10000" step="100"></div>
+        <div class="range"><label for="sDetour">Road distance to swap station, km <span class="mono" id="vDetour"></span></label><input type="range" id="sDetour" min="0" max="10" step="0.5"></div>
+        <button class="btn secondary" id="resetEcon">Reset to base case</button>
+      </div>
+      <div class="charts">
+        <div class="panel chart"><h3>Daily cost breakdown</h3><div id="costChart"></div></div>
+        <div class="panel chart"><h3>Saving as the petrol price moves</h3><div id="priceChart"></div></div>
+        <div class="panel chart"><h3>Uncertainty: 5,000 draws of every input</h3><div id="mcChart"></div><p id="mcNote"></p></div>
+        <div class="panel chart"><h3>Which input matters most</h3><div id="tornadoChart"></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Inputs and where they come from</h3>
+      <div class="table-wrap"><table id="paramTable"></table></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Car economics</span>
+      <h2>Does an electric car pay in Kampala?</h2>
+      <p class="lede">Five-year cost of owning a used imported electric car against a comparable petrol car, including the purchase premium. Ride-hail and taxi cars drive 4–5 times further than private cars, which changes the answer.</p>
+    </div>
+    <div class="controls" role="group" aria-label="Car use">
+      <button class="chip" data-persona="private" aria-pressed="false">Private car · 40 km/day</button>
+      <button class="chip" data-persona="ridehail" aria-pressed="true">Ride-hail / taxi · 180 km/day</button>
+    </div>
+    <div class="econ">
+      <div class="panel">
+        <div class="saving-hero"><span class="v mono" id="npvBig">–</span><span class="l" id="npvLbl"></span></div>
+        <p class="note" id="paybackLine"></p>
+        <div class="range"><label for="cPetrol">Petrol price, UGX/L <span class="mono" id="vcPetrol"></span></label><input type="range" id="cPetrol" min="4000" max="8000" step="50"></div>
+        <div class="range"><label for="cPrem">EV purchase premium, million UGX <span class="mono" id="vcPrem"></span></label><input type="range" id="cPrem" min="0" max="40" step="1"></div>
+        <div class="range"><label for="cHome">Share of charging done at home <span class="mono" id="vcHome"></span></label><input type="range" id="cHome" min="0" max="1" step="0.05"></div>
+        <div class="range"><label for="cDC">Public fast-charging price, UGX/kWh <span class="mono" id="vcDC"></span></label><input type="range" id="cDC" min="800" max="3000" step="50"></div>
+        <div class="range"><label for="cDet">Road distance to a fast charger, km <span class="mono" id="vcDet"></span></label><input type="range" id="cDet" min="0" max="15" step="0.5"></div>
+        <button class="btn secondary" id="resetCar">Reset to base case</button>
+      </div>
+      <div class="charts">
+        <div class="panel chart"><h3>Annual running cost</h3><div id="carCostChart"></div></div>
+        <div class="panel chart"><h3>Five-year value as the purchase premium moves</h3><div id="carPremChart"></div></div>
+        <div class="panel chart"><h3>Uncertainty: 5,000 draws of every input</h3><div id="carMcChart"></div><p id="carMcNote"></p></div>
+        <div class="panel chart"><h3>Which input matters most</h3><div id="carTornado"></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>E-car inputs and where they come from</h3>
+      <div class="table-wrap"><table id="carParamTable"></table></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Proposed locations</span>
+      <h2>Every proposed site, with its operating plan and site checks</h2>
+      <p class="lede">Build order, catchment by road, daily demand, equipment and grid connection, slope and height above the valley floor. Swap demand assumes 25% of Greater Kampala's 400,000 motorcycles go electric; charger demand assumes 2,000 electric ride-hail cars.</p>
+    </div>
+    <div class="controls" role="group" aria-label="Site list">
+      <button class="chip" data-plan="swap" aria-pressed="true">E-boda swap sites (60)</button>
+      <button class="chip" data-plan="charger" aria-pressed="false">E-car fast-charging sites (30)</button>
+    </div>
+    <div class="panel"><div class="table-wrap" style="max-height: 520px; overflow-y: auto"><table id="planTable"></table></div></div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="eyebrow">Read this before using the numbers</span><h2>What this atlas can and cannot say</h2></div>
+    <div class="caveats">
+      <div><h3>Suitability, not adoption</h3><p>Indices are weighted percentile ranks of public features with judgement-based weights. The robustness layer shows how often a cell stays in the top 10% when those weights are redrawn 1,000 times. Turning scores into adoption probabilities needs operator swap volumes or registrations.</p></div>
+      <div><h3>The station gap is unknown</h3><p>OpenStreetMap holds almost none of the 350+ swap stations in Uganda, so the proposed network is greenfield: where to build if starting today. Once a station inventory exists, the same model treats existing stations as already built.</p></div>
+      <div><h3>Proxies have blind spots</h3><p>OSM activity reflects mapping effort. The wealth and home-charging proxies both come from satellite building footprints, so they move together by construction, and they misread 1 km cells that mix estates with hospitals or airstrips. WorldPop figures are modelled; 2030 is a projection.</p></div>
+      <div><h3>E-cars are forward-looking</h3><p>Uganda imported only 17 fully electric cars from 2022 to April 2024, so e-car demand is a scenario, not a measurement. Purchase premium, public charging price and maintenance are assumptions to replace with dealer quotes and driver surveys.</p></div>
+      <div><h3>Grid data are partial</h3><p>OpenStreetMap maps a small part of the UEDCL distribution network, so sites are graded by the connection their load needs, not by distance to a mapped line. Utility feeder and transformer data would turn the grid classes into a real capacity check.</p></div>
+      <div><h3>Operations are scenarios</h3><p>Swap volumes assume a share of Greater Kampala's 400,000 motorcycles go electric and all riders use their nearest site. Cabinet throughput, pack size and charger utilisation are assumptions. Real networks need denser sites than a coverage plan.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources: OpenStreetMap contributors (ODbL) · WorldPop Global2 R2025A constrained 100 m (CC BY 4.0) · Microsoft Global ML Building Footprints (2026-02, ODbL) · Copernicus Sentinel-2 L2A (29 Jun 2026) and Copernicus DEM GLO-30 (ESA) · Daily Monitor fuel price surveillance, Sep 2026 · UEDCL tariffs Q4 2026 · Spiro, Zembo and Gogo swap prices as reported 2024–2026 · Transitec &amp; Transport for Cairo boda-boda operations study for AFD/KCCA (2020) · URA EV import data via The Observer · World Bank (Sep 2026).</span>
+    <span>Code, data and papers: <a href="https://github.com/gavacharles/kampala-emobility-atlas">github.com/gavacharles/kampala-emobility-atlas</a>. Pipeline: run_baseline.py → run_analysis.py → run_gis.py → build_dashboard.py.</span>
+  </footer>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = (v, d = 0) => v == null || !isFinite(v) ? "–" : Number(v).toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: d });
+const ugx = (v) => (v < 0 ? "−" : "") + "UGX " + fmt(Math.abs(v));
+const C = D.cells, N = C.lat.length;
+
+/* ---------- color ramps (one hue per sequential context) ---------- */
+const RAMPS = {
+  blue:   ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"],
+  orange: ["#fde3d6", "#f8c0a4", "#f29a72", "#eb6834", "#c4501f", "#963a13", "#6a280b"],
+  aqua:   ["#d3f2e6", "#a6e3cc", "#6fcfae", "#1baf7a", "#168f64", "#11704e", "#0b5038"],
+};
+function hex2rgb(h) { const n = parseInt(h.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; }
+const RAMP_RGB = Object.fromEntries(Object.entries(RAMPS).map(([k, v]) => [k, v.map(hex2rgb)]));
+function rampColor(name, t) {
+  const r = RAMP_RGB[name]; t = Math.max(0, Math.min(1, t)) * (r.length - 1);
+  const i = Math.min(Math.floor(t), r.length - 2), f = t - i;
+  const c = r[i].map((v, k) => Math.round(v + (r[i + 1][k] - v) * f));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+function pct(arr, p) { const v = arr.filter((x) => x != null && isFinite(x)).sort((a, b) => a - b); return v[Math.floor((v.length - 1) * p)]; }
+
+/* ---------- state ---------- */
+const state = { layer: "boda", year: 2025, k: 0, netMode: false, net: "boda", sat: false };
+const NETS = {
+  boda: { sites: D.sites, cover: C.cover_rank, layer: "boda", km: D.config.cover_road_m / 1000, noun: "swap site", demand: "e-boda",
+          desc: (km) => `Swap sites are added one at a time, each chosen to reach the most uncovered e-boda demand within ${km} km by road. Demand is 2025 population weighted by e-boda suitability. Candidates: fuel stations, markets, boda stages.` },
+  car:  { sites: D.car_sites, cover: C.car_rank_cover, layer: "car", km: D.config.car_cover_road_m / 1000, noun: "fast charger", demand: "e-car",
+          desc: (km) => `Fast-charging sites are added one at a time, each chosen to reach the most uncovered e-car demand within ${km} km by road. Demand is 2025 population weighted by e-car suitability. Candidates: fuel stations, car parks, car dealers.` },
+};
+const net = () => NETS[state.net];
+const satImg = new Image(); satImg.onload = () => draw(); satImg.src = D.satellite.uri;
+document.getElementById("satDate").textContent = D.satellite.date;
+const popAt = (i, y) => {
+  const a = C.pop2020[i] ?? 0, b = C.pop2025[i] ?? 0, c = C.pop2030[i] ?? 0;
+  return y <= 2025 ? a + (b - a) * (y - 2020) / 5 : b + (c - b) * (y - 2025) / 5;
+};
+const growth = C.pop2025.map((v, i) => (v ?? 0) - (C.pop2020[i] ?? 0));
+const POP_MAX = pct(C.pop2025, 0.98), GROWTH_MAX = pct(growth, 0.98);
+const SAVE = C.saving_n30, SAVE_MIN = pct(SAVE, 0.02), SAVE_MAX = pct(SAVE, 0.98);
+const LAYERS = {
+  boda:     { label: "E-boda suitability", ramp: "blue", get: (i) => C.boda[i], lo: 0, hi: 100, f: (v) => fmt(v, 0) + " / 100", ends: ["0", "100"] },
+  car:      { label: "E-car suitability", ramp: "blue", get: (i) => C.car[i], lo: 0, hi: 100, f: (v) => fmt(v, 0) + " / 100", ends: ["0", "100"] },
+  boda_rob: { label: "E-boda: share of 1,000 weightings in top 10%", ramp: "blue", get: (i) => C.boda_rob[i], lo: 0, hi: 1, f: (v) => fmt(v * 100, 0) + "%", ends: ["0%", "100%"] },
+  pop:      { label: "People per km²", ramp: "orange", get: (i) => popAt(i, state.year), lo: 0, hi: POP_MAX, f: (v) => fmt(v, 0), ends: ["0", fmt(POP_MAX, 0) + "+"] },
+  growth:   { label: "People added per km², 2020–25", ramp: "orange", get: (i) => growth[i], lo: 0, hi: GROWTH_MAX, f: (v) => fmt(v, 0), ends: ["0", fmt(GROWTH_MAX, 0) + "+"] },
+  wealth:   { label: "Housing wealth proxy (rank)", ramp: "blue", get: (i) => C.wealth[i], lo: 0, hi: 1, f: (v) => fmt(v * 100, 0) + " pctile", ends: ["low", "high"] },
+  home:     { label: "Home-charging potential (share of households, proxy)", ramp: "blue", get: (i) => C.home_charge[i], lo: 0, hi: 1, f: (v) => fmt(v * 100, 0) + "%", ends: ["0%", "100%"] },
+  saving:   { label: "E-boda saving per rider-day, first 30 sites", ramp: "aqua", get: (i) => SAVE[i], lo: SAVE_MIN, hi: SAVE_MAX, f: (v) => ugx(v), ends: [fmt(SAVE_MIN / 1000, 1) + "k", fmt(SAVE_MAX / 1000, 1) + "k UGX"] },
+  ridehail: { label: "E-ride-hail saving per car-year, first 10 chargers", ramp: "orange", get: (i) => C.ridehail_n10[i], lo: pct(C.ridehail_n10, 0.02), hi: pct(C.ridehail_n10, 0.98),
+              f: (v) => "UGX " + fmt(v / 1e6, 1) + "M", ends: [fmt(pct(C.ridehail_n10, 0.02) / 1e6, 1) + "M", fmt(pct(C.ridehail_n10, 0.98) / 1e6, 1) + "M UGX"] },
+};
+
+/* ---------- KPIs ---------- */
+(function kpis() {
+  const pop = C.pop2025.reduce((a, b) => a + (b ?? 0), 0);
+  const s = D.sites, cov30 = s[Math.min(29, s.length - 1)].cumulative_coverage_pct;
+  const e = D.economics;
+  const cs = D.car_sites, ccov10 = cs[Math.min(9, cs.length - 1)].cumulative_coverage_pct, rh = D.car_economics.by_persona.ridehail;
+  const tiles = [
+    [fmt(pop / 1e6, 1) + "M", `people in ${fmt(N)} scored 1 km cells (WorldPop 2025)`],
+    [fmt(cov30, 0) + "%", "of e-boda demand within 2.5 km by road of the first 30 proposed swap sites"],
+    [fmt(ccov10, 0) + "%", "of e-car demand within 5 km by road of the first 10 proposed fast-charging sites"],
+    [ugx(e.base.saving), "running-cost saving per e-boda rider per day (base case)"],
+    [fmt(rh.payback * 12, 0) + " months", "for an e-ride-hail car to repay its purchase premium (base case)"],
+    [fmt(D.car_economics.by_persona.private.mc_share_positive * 100, 0) + "%", "chance a private e-car pays back within 5 years (simulated)"],
+  ];
+  document.getElementById("kpis").innerHTML = tiles.map(([v, l]) => `<div class="kpi"><span class="v">${v}</span><span class="l">${l}</span></div>`).join("");
+  document.getElementById("nStations").textContent = D.stations.length;
+  document.getElementById("coverKm").textContent = fmt(D.config.cover_road_m / 1000, 1);
+})();
+
+/* ---------- map ---------- */
+const canvas = document.getElementById("map"), ctx = canvas.getContext("2d");
+const box = document.getElementById("mapbox"), tip = document.getElementById("tip");
+let view = null;
+function extent() {
+  let la0 = Infinity, la1 = -Infinity, lo0 = Infinity, lo1 = -Infinity;
+  for (let i = 0; i < N; i++) { la0 = Math.min(la0, C.lat[i]); la1 = Math.max(la1, C.lat[i]); lo0 = Math.min(lo0, C.lon[i]); lo1 = Math.max(lo1, C.lon[i]); }
+  const pad = 0.012; return { la0: la0 - pad, la1: la1 + pad, lo0: lo0 - pad, lo1: lo1 + pad };
+}
+const EXT = extent();
+function resize() {
+  const w = box.clientWidth, aspect = (EXT.la1 - EXT.la0) / (EXT.lo1 - EXT.lo0);
+  const h = Math.min(Math.round(w * aspect), Math.max(420, Math.round(window.innerHeight * 0.82)));
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = w * dpr; canvas.height = h * dpr; canvas.style.height = h + "px";
+  const scale = Math.min(w / (EXT.lo1 - EXT.lo0), h / (EXT.la1 - EXT.la0));
+  const ox = (w - scale * (EXT.lo1 - EXT.lo0)) / 2, oy = (h - scale * (EXT.la1 - EXT.la0)) / 2;
+  view = { w, h, dpr, scale, ox, oy, cell: (D.config.cell_size_m / 111320) * scale };
+  draw();
+}
+const px = (lon) => view.ox + (lon - EXT.lo0) * view.scale;
+const py = (lat) => view.oy + (EXT.la1 - lat) * view.scale;
+
+function draw() {
+  if (!view) return;
+  const L = LAYERS[state.layer], empty = css("--cell-empty");
+  ctx.setTransform(view.dpr, 0, 0, view.dpr, 0, 0);
+  ctx.fillStyle = css("--surface"); ctx.fillRect(0, 0, view.w, view.h);
+  if (state.sat && satImg.complete) {
+    const [bs, bw, bn, be] = D.satellite.bounds;
+    ctx.drawImage(satImg, px(bw), py(bn), px(be) - px(bw), py(bs) - py(bn));
+  }
+  const s = view.cell + 0.6, k = state.k, netOn = state.netMode, NW = net();
+  ctx.globalAlpha = state.sat ? 0.55 : 1;
+  for (let i = 0; i < N; i++) {
+    const v = L.get(i);
+    let col = v == null || !isFinite(v) ? empty : rampColor(L.ramp, (v - L.lo) / (L.hi - L.lo));
+    if (netOn && !(NW.cover[i] > 0 && NW.cover[i] <= k)) { if (state.sat) continue; col = empty; }
+    if (state.sat && col === empty) continue;
+    ctx.fillStyle = col;
+    ctx.fillRect(px(C.lon[i]) - s / 2, py(C.lat[i]) - s / 2, s, s);
+  }
+  ctx.globalAlpha = 1;
+  // roads
+  ctx.lineCap = "round"; ctx.lineJoin = "round";
+  for (const major of [false, true]) {
+    ctx.strokeStyle = css(major ? "--road" : "--road-minor"); ctx.lineWidth = major ? 1.3 : 0.8;
+    ctx.beginPath();
+    for (const r of D.roads) {
+      if (r.major !== major) continue;
+      r.c.forEach(([la, lo], j) => (j ? ctx.lineTo(px(lo), py(la)) : ctx.moveTo(px(lo), py(la))));
+    }
+    ctx.stroke();
+  }
+  // proposed sites
+  if (netOn) {
+    const R = (NW.km * 1000 / 1.3 / 111320) * view.scale;  // approximate straight-line reach
+    NW.sites.slice(0, k).forEach((st, j) => {
+      const x = px(st.lon), y = py(st.lat), fresh = j === k - 1, r = fresh ? 6 : 4;
+      if (fresh && !reduceMotion) { ctx.beginPath(); ctx.arc(x, y, R, 0, 7); ctx.strokeStyle = css("--site"); ctx.globalAlpha = 0.35; ctx.lineWidth = 1; ctx.stroke(); ctx.globalAlpha = 1; }
+      ctx.beginPath();
+      if (state.net === "car") ctx.rect(x - r, y - r, 2 * r, 2 * r); else ctx.arc(x, y, r, 0, 7);
+      ctx.fillStyle = css("--site"); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = css("--site-ring"); ctx.stroke();
+    });
+  }
+  // known stations
+  D.stations.forEach((st) => {
+    ctx.beginPath(); ctx.arc(px(st.lon), py(st.lat), 5, 0, 7);
+    ctx.fillStyle = css("--station"); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = css("--site-ring"); ctx.stroke();
+  });
+  // labels
+  ctx.font = `500 ${view.w < 560 ? 10 : 11.5}px ${css("--f-data")}`; ctx.textAlign = "center";
+  for (const p of D.places) {
+    const x = px(p.lon), y = py(p.lat);
+    if (x < 30 || x > view.w - 30 || y < 30 || y > view.h - 10) continue;
+    ctx.lineWidth = 3; ctx.strokeStyle = css("--surface"); ctx.strokeText(p.name, x, y);
+    ctx.fillStyle = css("--ink-2"); ctx.fillText(p.name, x, y);
+  }
+  overlay(); legend();
+}
+
+function overlay() {
+  const big = document.getElementById("ovBig"), small = document.getElementById("ovSmall");
+  if (state.netMode) {
+    const NW = net(), st = NW.sites[state.k - 1];
+    big.textContent = state.k ? fmt(st.cumulative_coverage_pct, 1) + "%" : "0%";
+    small.textContent = `of ${NW.demand} demand covered` + (state.k ? ` · ${state.k} ${NW.noun}${state.k > 1 ? "s" : ""}` : "");
+  } else if (state.layer === "pop") {
+    const tot = Array.from({ length: N }, (_, i) => popAt(i, state.year)).reduce((a, b) => a + b, 0);
+    big.textContent = Math.round(state.year); small.textContent = `${fmt(tot / 1e6, 2)}M people in scored cells`;
+  } else { big.textContent = ""; small.textContent = ""; }
+}
+
+function legend() {
+  const L = LAYERS[state.layer], stops = RAMPS[L.ramp].join(",");
+  const keys = [`<span><i class="dot" style="background:var(--station)"></i>Known station (OSM)</span>`];
+  if (state.netMode) keys.unshift(`<span><i class="dot" style="background:var(--site);border-radius:${state.net === "car" ? "1px" : "50%"}"></i>Proposed ${net().noun}</span>`);
+  document.getElementById("legend").innerHTML =
+    `<span>${L.label}${state.netMode ? ", covered cells only" : ""}</span><span class="bar" style="background:linear-gradient(90deg,${stops})"></span>` +
+    `<span class="ends"><span>${L.ends[0]}</span><span>${L.ends[1]}</span></span><span class="keys">${keys.join("")}</span>`;
+}
+
+/* hover */
+function nearest(mx, my) {
+  let best = -1, bd = (view.cell * 0.75) ** 2;
+  for (let i = 0; i < N; i++) { const dx = px(C.lon[i]) - mx, dy = py(C.lat[i]) - my, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }
+  return best;
+}
+canvas.addEventListener("pointermove", (e) => {
+  const r = canvas.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, i = nearest(mx, my);
+  if (i < 0) { tip.hidden = true; return; }
+  const L = LAYERS[state.layer];
+  const rows = [
+    [L.label, L.f(L.get(i))],
+    ["E-boda / E-car", `${fmt(C.boda[i])} / ${fmt(C.car[i])}`],
+    ["People, 2025", fmt(C.pop2025[i])],
+    ["Nearest of first 30 swap sites", C.dist_n30[i] == null ? "off network" : fmt(C.dist_n30[i] / 1000, 1) + " km by road"],
+    ["Nearest of first 10 chargers", C.dist_car_n10[i] == null ? "off network" : fmt(C.dist_car_n10[i] / 1000, 1) + " km by road"],
+    ["Home-charging potential", fmt(C.home_charge[i] * 100) + "%"],
+  ];
+  if (C.cover_rank[i] > 0) rows.push(["Covered from swap site", "S" + C.cover_rank[i]]);
+  if (C.car_rank_cover[i] > 0) rows.push(["Covered from charger", "C" + C.car_rank_cover[i]]);
+  tip.innerHTML = rows.map(([a, b]) => `${a}: <b>${b}</b>`).join("<br>");
+  tip.hidden = false;
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  tip.style.left = Math.min(mx + 14, view.w - tw - 6) + "px";
+  tip.style.top = Math.max(6, Math.min(my + 14, view.h - th - 6)) + "px";
+});
+canvas.addEventListener("pointerleave", () => (tip.hidden = true));
+
+/* layer chips */
+const chips = document.querySelectorAll(".chip[data-layer]");
+function setLayer(l) {
+  state.layer = l; chips.forEach((c) => c.setAttribute("aria-pressed", c.dataset.layer === l));
+  try { localStorage.setItem("atlasLayer", l); } catch (_) {}
+  draw();
+}
+chips.forEach((c) => c.addEventListener("click", () => { stopAnims(); state.netMode = false; setLayer(c.dataset.layer); }));
+
+/* ---------- network build-out animation ---------- */
+const kSlider = document.getElementById("kSlider"), kVal = document.getElementById("kVal");
+const netChips = document.querySelectorAll(".chip[data-net]");
+function setNet(n) {
+  stopAnims(); state.net = n;
+  netChips.forEach((c) => c.setAttribute("aria-pressed", c.dataset.net === n));
+  kSlider.max = net().sites.length;
+  document.getElementById("netDesc").textContent = net().desc(fmt(net().km, 1));
+  setK(Math.min(state.k, net().sites.length));
+}
+netChips.forEach((c) => c.addEventListener("click", () => setNet(c.dataset.net)));
+kSlider.max = D.sites.length;
+document.getElementById("netDesc").textContent = NETS.boda.desc(fmt(NETS.boda.km, 1));
+document.getElementById("satToggle").addEventListener("click", (e) => {
+  state.sat = !state.sat; e.currentTarget.setAttribute("aria-pressed", state.sat); draw();
+});
+let netTimer = null, popRaf = null;
+function stopAnims() {
+  if (netTimer) { clearInterval(netTimer); netTimer = null; }
+  if (popRaf) { cancelAnimationFrame(popRaf); popRaf = null; }
+  document.querySelector("#playNet span").textContent = "Play build-out";
+}
+function setK(k) {
+  state.k = k; state.netMode = true; kSlider.value = k; kVal.textContent = k;
+  if (state.layer !== net().layer) setLayer(net().layer); else draw();
+  coverChart();
+}
+document.getElementById("playNet").addEventListener("click", () => {
+  if (netTimer) { stopAnims(); return; }
+  stopAnims();
+  const total = net().sites.length;
+  if (reduceMotion) { setK(total); return; }
+  let k = state.k >= total ? 0 : state.k;
+  document.querySelector("#playNet span").textContent = "Pause";
+  netTimer = setInterval(() => { k += 1; setK(k); if (k >= total) stopAnims(); }, state.net === "car" ? 380 : 220);
+});
+document.getElementById("resetNet").addEventListener("click", () => { stopAnims(); setK(0); });
+kSlider.addEventListener("input", () => { stopAnims(); setK(+kSlider.value); });
+
+/* ---------- population animation ---------- */
+const yearSlider = document.getElementById("yearSlider"), yearVal = document.getElementById("yearVal");
+function setYear(y) {
+  state.year = y; yearSlider.value = y; yearVal.textContent = Math.round(y);
+  state.netMode = false; if (state.layer !== "pop") setLayer("pop"); else draw();
+}
+yearSlider.addEventListener("input", () => { stopAnims(); setYear(+yearSlider.value); });
+document.getElementById("playPop").addEventListener("click", () => {
+  stopAnims();
+  if (reduceMotion) { setYear(2030); return; }
+  const t0 = performance.now(), dur = 6000;
+  const step = (t) => { const f = Math.min(1, (t - t0) / dur); setYear(2020 + 10 * f); if (f < 1) popRaf = requestAnimationFrame(step); else popRaf = null; };
+  popRaf = requestAnimationFrame(step);
+});
+
+/* ---------- small SVG chart helpers ---------- */
+const NS = "http://www.w3.org/2000/svg";
+function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("role", "img"); return s; }
+function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; parent && parent.appendChild(e); return e; }
+function ticks(lo, hi, n = 4) { const step = Math.pow(10, Math.floor(Math.log10((hi - lo) / n))); const m = [1, 2, 2.5, 5, 10].find((m) => (hi - lo) / (m * step) <= n) * step; const out = []; for (let v = Math.ceil(lo / m) * m; v <= hi + 1e-9; v += m) out.push(+v.toFixed(6)); return out; }
+
+/* coverage curve */
+function coverChart() {
+  const host = document.getElementById("coverChart"), W = 300, H = 170, m = { l: 34, r: 10, t: 10, b: 26 }, SITES = net().sites;
+  const s = svg(W, H), xs = (k) => m.l + (k / SITES.length) * (W - m.l - m.r), ys = (v) => H - m.b - (v / 100) * (H - m.t - m.b);
+  s.setAttribute("aria-label", `Cumulative share of ${net().demand} demand covered as sites are added`);
+  [0, 25, 50, 75, 100].forEach((v) => { el("line", { x1: m.l, x2: W - m.r, y1: ys(v), y2: ys(v), stroke: css("--grid") }, s); el("text", { x: m.l - 6, y: ys(v) + 4, "text-anchor": "end" }, s, v + "%"); });
+  ticks(0, SITES.length, 4).forEach((v) => el("text", { x: xs(v), y: H - 8, "text-anchor": "middle" }, s, v));
+  const pts = [[0, 0], ...SITES.map((d) => [d.rank, d.cumulative_coverage_pct])];
+  el("path", { d: "M" + pts.map(([k, v]) => `${xs(k)},${ys(v)}`).join("L") + `L${xs(pts.at(-1)[0])},${ys(0)}L${xs(0)},${ys(0)}Z`, fill: css("--accent"), opacity: 0.12 }, s);
+  el("path", { d: "M" + pts.map(([k, v]) => `${xs(k)},${ys(v)}`).join("L"), fill: "none", stroke: css("--accent"), "stroke-width": 2 }, s);
+  if (state.k > 0) {
+    const v = SITES[state.k - 1].cumulative_coverage_pct;
+    el("line", { x1: xs(state.k), x2: xs(state.k), y1: m.t, y2: H - m.b, stroke: css("--ink-3"), "stroke-dasharray": "2 3" }, s);
+    el("circle", { cx: xs(state.k), cy: ys(v), r: 4.5, fill: css("--accent"), stroke: css("--surface"), "stroke-width": 2 }, s);
+    el("text", { x: Math.min(xs(state.k) + 6, W - 40), y: Math.max(ys(v) - 8, 12), class: "t-ink" }, s, fmt(v, 0) + "%");
+  }
+  el("text", { x: W - m.r, y: H - 8 + 0, "text-anchor": "end", opacity: 0 }, s, "");
+  host.replaceChildren(s);
+}
+
+/* ---------- rider economics (same model as emobility/economics.py) ---------- */
+const P0 = Object.fromEntries(D.economics.params.map((p) => [p.parameter, p.base]));
+let P = { ...P0 }, detourKm = 0;
+function costs(p, detourM) {
+  const dk = 2 * detourM / 1000;
+  const petrolFuel = p.daily_km / p.petrol_km_per_l * p.petrol_price_ugx_per_l, petrolMaint = p.petrol_maintenance_ugx_per_day;
+  const swaps = p.daily_km / p.battery_range_km;
+  const energy = (p.daily_km + swaps * dk) * p.swap_price_ugx_per_full / p.battery_range_km;
+  const time = swaps * (dk / p.detour_speed_kmh + p.swap_wait_min / 60) * p.rider_earnings_ugx_per_hour;
+  return { petrolFuel, petrolMaint, energy, time, eMaint: p.electric_maintenance_ugx_per_day,
+    petrol: petrolFuel + petrolMaint, electric: energy + time + p.electric_maintenance_ugx_per_day };
+}
+const SL = [
+  ["sPetrol", "vPetrol", "petrol_price_ugx_per_l", (v) => fmt(v)],
+  ["sKm", "vKm", "daily_km", (v) => fmt(v)],
+  ["sEff", "vEff", "petrol_km_per_l", (v) => fmt(v)],
+  ["sSwap", "vSwap", "swap_price_ugx_per_full", (v) => fmt(v)],
+];
+function syncSliders() {
+  SL.forEach(([id, vid, key, f]) => { document.getElementById(id).value = P[key]; document.getElementById(vid).textContent = f(P[key]); });
+  document.getElementById("sDetour").value = detourKm; document.getElementById("vDetour").textContent = fmt(detourKm, 1);
+}
+SL.forEach(([id, , key]) => document.getElementById(id).addEventListener("input", (e) => { P[key] = +e.target.value; econ(); }));
+document.getElementById("sDetour").addEventListener("input", (e) => { detourKm = +e.target.value; econ(); });
+document.getElementById("resetEcon").addEventListener("click", () => { P = { ...P0 }; detourKm = 0; econ(); });
+
+let shownSaving = null;
+function animateNumber(target) {
+  const elx = document.getElementById("saveBig"), from = shownSaving ?? target; shownSaving = target;
+  if (reduceMotion || from === target) { elx.textContent = ugx(target); return; }
+  const t0 = performance.now();
+  const step = (t) => { const f = Math.min(1, (t - t0) / 350), e = 1 - Math.pow(1 - f, 3); elx.textContent = ugx(from + (target - from) * e); if (f < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+
+function econ() {
+  syncSliders();
+  const c = costs(P, detourKm * 1000), saving = c.petrol - c.electric;
+  animateNumber(saving);
+  document.getElementById("saveLbl").textContent = saving >= 0 ? "saved per day with an e-boda (running costs)" : "extra cost per day with an e-boda (running costs)";
+  costChart(c); priceChart();
+}
+
+function costChart(c) {
+  const W = 360, H = 170, m = { l: 66, r: 16, t: 8, b: 40 }, host = document.getElementById("costChart");
+  const s = svg(W, H); s.setAttribute("aria-label", "Stacked daily cost of petrol and electric bodas");
+  const max = Math.max(c.petrol, c.electric) * 1.08, xs = (v) => m.l + (v / max) * (W - m.l - m.r);
+  ticks(0, max, 4).forEach((v) => { el("line", { x1: xs(v), x2: xs(v), y1: m.t, y2: H - m.b, stroke: css("--grid") }, s); el("text", { x: xs(v), y: H - m.b + 14, "text-anchor": "middle" }, s, fmt(v / 1000, 0) + "k"); });
+  const rows = [
+    ["Petrol", [["Fuel", c.petrolFuel, css("--petrol"), 1], ["Maintenance", c.petrolMaint, css("--petrol"), 0.45]]],
+    ["Electric", [["Swaps", c.energy, css("--electric"), 1], ["Swap time", c.time, css("--electric"), 0.6], ["Maintenance", c.eMaint, css("--electric"), 0.3]]],
+  ];
+  const bh = 30;
+  rows.forEach(([name, segs], r) => {
+    const y = m.t + 10 + r * (bh + 22); let x0 = 0;
+    el("text", { x: m.l - 8, y: y + bh / 2 + 4, "text-anchor": "end", class: "t-ink" }, s, name);
+    segs.forEach(([lab, v, col, op]) => {
+      const rect = el("rect", { x: xs(x0) + (x0 ? 1 : 0), y, width: Math.max(0, xs(x0 + v) - xs(x0) - (x0 ? 1 : 0)), height: bh, fill: col, "fill-opacity": op, rx: 2 }, s);
+      el("title", {}, rect, `${name} · ${lab}: ${ugx(v)}`);
+      x0 += v;
+    });
+    el("text", { x: xs(x0) + 6, y: y + bh / 2 + 4, class: "t-ink" }, s, fmt(x0 / 1000, 1) + "k");
+  });
+  el("text", { x: m.l, y: H - 6, class: "t-2" }, s, "UGX per rider-day · hover segments for detail");
+  host.replaceChildren(s);
+}
+
+function priceChart() {
+  const W = 360, H = 190, m = { l: 46, r: 14, t: 14, b: 34 }, host = document.getElementById("priceChart");
+  const s = svg(W, H); s.setAttribute("aria-label", "E-boda daily saving against petrol price");
+  const prices = []; for (let x = 4000; x <= 8000; x += 100) prices.push(x);
+  const vals = prices.map((x) => { const c = costs({ ...P, petrol_price_ugx_per_l: x }, detourKm * 1000); return c.petrol - c.electric; });
+  const lo = Math.min(0, ...vals), hi = Math.max(...vals) * 1.1;
+  const xs = (v) => m.l + (v - 4000) / 4000 * (W - m.l - m.r), ys = (v) => H - m.b - (v - lo) / (hi - lo) * (H - m.t - m.b);
+  ticks(lo, hi, 4).forEach((v) => { el("line", { x1: m.l, x2: W - m.r, y1: ys(v), y2: ys(v), stroke: v === 0 ? css("--ink-3") : css("--grid") }, s); el("text", { x: m.l - 6, y: ys(v) + 4, "text-anchor": "end" }, s, fmt(v / 1000, 0) + "k"); });
+  [4000, 5000, 6000, 7000, 8000].forEach((v) => el("text", { x: xs(v), y: H - m.b + 15, "text-anchor": "middle" }, s, fmt(v / 1000, 0) + "k"));
+  el("path", { d: "M" + prices.map((x, i) => `${xs(x)},${ys(vals[i])}`).join("L"), fill: "none", stroke: css("--accent"), "stroke-width": 2 }, s);
+  const cur = costs(P, detourKm * 1000), cv = cur.petrol - cur.electric, cx = xs(Math.max(4000, Math.min(8000, P.petrol_price_ugx_per_l)));
+  el("circle", { cx, cy: ys(cv), r: 5, fill: css("--accent"), stroke: css("--surface"), "stroke-width": 2 }, s);
+  el("text", { x: Math.min(cx + 8, W - 70), y: ys(cv) - 8, class: "t-ink" }, s, ugx(cv));
+  // break-even price
+  const litres = P.daily_km / P.petrol_km_per_l, be = (cur.electric - P.petrol_maintenance_ugx_per_day) / litres;
+  if (be > 4000 && be < 8000) {
+    el("line", { x1: xs(be), x2: xs(be), y1: m.t, y2: H - m.b, stroke: css("--petrol"), "stroke-dasharray": "3 3" }, s);
+    el("text", { x: xs(be) + 4, y: m.t + 10, class: "t-2" }, s, "break-even " + fmt(be));
+  }
+  el("text", { x: m.l, y: H - 4, class: "t-2" }, s, "petrol price, UGX/L → daily saving, UGX");
+  host.replaceChildren(s);
+  const note = be <= 4000 ? `Electric stays cheaper down to a petrol price of about UGX ${fmt(be)}/L.` : "";
+  host.dataset.note = note;
+}
+
+function mcChart() {
+  const W = 360, H = 180, m = { l: 36, r: 10, t: 10, b: 34 }, host = document.getElementById("mcChart"), h = D.economics.mc_hist;
+  const s = svg(W, H); s.setAttribute("aria-label", "Histogram of simulated daily savings");
+  const lo = h.edges[0], hi = h.edges.at(-1), maxC = Math.max(...h.counts);
+  const xs = (v) => m.l + (v - Math.min(0, lo)) / (hi - Math.min(0, lo)) * (W - m.l - m.r), ys = (c) => H - m.b - c / maxC * (H - m.t - m.b);
+  ticks(Math.min(0, lo), hi, 5).forEach((v) => el("text", { x: xs(v), y: H - m.b + 15, "text-anchor": "middle" }, s, fmt(v / 1000, 0) + "k"));
+  el("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: css("--ink-3") }, s);
+  h.counts.forEach((c, i) => {
+    const x0 = xs(h.edges[i]) + 1, x1 = xs(h.edges[i + 1]) - 1;
+    const r = el("rect", { x: x0, y: ys(c), width: Math.max(0.5, x1 - x0), height: H - m.b - ys(c), fill: css("--accent"), rx: 1.5 }, s);
+    el("title", {}, r, `${ugx(h.edges[i])} to ${ugx(h.edges[i + 1])}: ${c} draws`);
+  });
+  const [q5, q50, q95] = D.economics.mc_quantiles;
+  [[q5, "5%"], [q50, "median"], [q95, "95%"]].forEach(([v, lab]) => {
+    el("line", { x1: xs(v), x2: xs(v), y1: m.t, y2: H - m.b, stroke: css("--ink-2"), "stroke-dasharray": lab === "median" ? "" : "2 3" }, s);
+    el("text", { x: xs(v), y: m.t + 2 + (lab === "median" ? 0 : 12), "text-anchor": "middle", class: "t-ink" }, s, lab);
+  });
+  el("text", { x: m.l, y: H - 4, class: "t-2" }, s, "daily saving, UGX (base case: station on the route)");
+  host.replaceChildren(s);
+  document.getElementById("mcNote").textContent =
+    `Electric is cheaper in ${fmt(D.economics.mc_share_positive * 100, 1)}% of draws. Median saving ${ugx(q50)}, 90% range ${ugx(q5)} to ${ugx(q95)} per day.`;
+}
+
+const PRETTY = {
+  petrol_price_ugx_per_l: "Petrol price", petrol_km_per_l: "Petrol km/L", daily_km: "Km per day",
+  swap_price_ugx_per_full: "Swap price", battery_range_km: "Battery range", petrol_maintenance_ugx_per_day: "Petrol maintenance",
+  electric_maintenance_ugx_per_day: "E-boda maintenance", rider_earnings_ugx_per_hour: "Rider hourly earnings",
+  swap_wait_min: "Wait per swap", detour_speed_kmh: "Detour speed",
+};
+function tornadoChart() {
+  const rows = D.economics.tornado.slice(0, 7), W = 360, rowH = 24, m = { l: 128, r: 16, t: 8, b: 30 }, H = m.t + m.b + rows.length * rowH;
+  const host = document.getElementById("tornadoChart"), s = svg(W, H); s.setAttribute("aria-label", "Tornado chart of daily saving sensitivity");
+  const base = rows[0].base, vals = rows.flatMap((r) => [r.saving_at_low, r.saving_at_high]);
+  const lo = Math.min(0, ...vals), hi = Math.max(...vals) * 1.05, xs = (v) => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r);
+  ticks(lo, hi, 4).forEach((v) => { el("line", { x1: xs(v), x2: xs(v), y1: m.t, y2: H - m.b, stroke: css("--grid") }, s); el("text", { x: xs(v), y: H - m.b + 14, "text-anchor": "middle" }, s, fmt(v / 1000, 0) + "k"); });
+  rows.forEach((r, i) => {
+    const y = m.t + i * rowH + 4, a = Math.min(r.saving_at_low, r.saving_at_high), b = Math.max(r.saving_at_low, r.saving_at_high);
+    el("text", { x: m.l - 8, y: y + 12, "text-anchor": "end", class: "t-2" }, s, PRETTY[r.parameter] || r.parameter);
+    const rect = el("rect", { x: xs(a), y, width: Math.max(1, xs(b) - xs(a)), height: rowH - 8, fill: css("--accent"), rx: 2 }, s);
+    el("title", {}, rect, `${PRETTY[r.parameter]}: saving ${ugx(r.saving_at_low)} at low, ${ugx(r.saving_at_high)} at high`);
+  });
+  el("line", { x1: xs(base), x2: xs(base), y1: m.t, y2: H - m.b, stroke: css("--ink"), "stroke-width": 1.5 }, s);
+  el("text", { x: m.l, y: H - 4, class: "t-2" }, s, "daily saving as each input moves low → high");
+  host.replaceChildren(s);
+}
+
+function paramTable() {
+  const fmtv = (k, v) => fmt(v, k.includes("kmh") || k.includes("km_per") ? 0 : 0);
+  document.getElementById("paramTable").innerHTML =
+    `<thead><tr><th>Input</th><th>Base</th><th>Range</th><th>Source</th></tr></thead><tbody>` +
+    D.economics.params.map((p) => {
+      const assume = p.source.startsWith("ASSUMPTION");
+      return `<tr><td>${PRETTY[p.parameter] || p.parameter}</td><td class="num">${fmtv(p.parameter, p.base)}</td><td class="num">${fmtv(p.parameter, p.low)}–${fmtv(p.parameter, p.high)}</td>` +
+        `<td>${assume ? '<span class="tag assume">assumption</span> ' + p.source.replace(/^ASSUMPTION:\s*/, "") : p.source}</td></tr>`;
+    }).join("") + "</tbody>";
+}
+
+/* ---------- car economics (same model as emobility/car_economics.py) ---------- */
+const CE = D.car_economics, CP0 = Object.fromEntries(CE.params.map((p) => [p.parameter, p.base]));
+let CP = { ...CP0 }, persona = "ridehail", carHome = CE.personas.ridehail.home_share, carDet = 0;
+const CPRETTY = {
+  petrol_price_ugx_per_l: "Petrol price", ice_km_per_l: "Petrol car km/L", ev_kwh_per_km: "EV kWh per km", home_tariff_ugx_per_kwh: "Home tariff",
+  public_dc_ugx_per_kwh: "Public fast-charging price", ice_maint_ugx_per_km: "Petrol maintenance per km", ev_maint_ugx_per_km: "EV maintenance per km",
+  battery_reserve_ugx_per_km: "Battery reserve per km", range_per_charge_km: "Km per fast-charge session", dc_session_min: "Minutes per session",
+  ev_purchase_premium_ugx: "EV purchase premium", discount_rate: "Discount rate", horizon_years: "Holding period, years",
+};
+function carCosts(p, per, hs, d) {
+  const q = CE.personas[per], km = q.daily_km * q.days;
+  const fuel = km / p.ice_km_per_l * p.petrol_price_ugx_per_l, iceM = km * p.ice_maint_ugx_per_km;
+  const pub = km * (1 - hs), sessions = pub / p.range_per_charge_km, dk = sessions * 2 * d / 1000;
+  const homeE = km * hs * p.home_tariff_ugx_per_kwh * p.ev_kwh_per_km, pubE = (pub + dk) * p.public_dc_ugx_per_kwh * p.ev_kwh_per_km;
+  const evM = (km + dk) * (p.ev_maint_ugx_per_km + p.battery_reserve_ugx_per_km);
+  const time = sessions * (p.dc_session_min / 60 + 2 * d / 1000 / 25) * q.time_value_ugx_per_h;
+  const ice = fuel + iceM, ev = homeE + pubE + evM + time, n = Math.round(p.horizon_years), r = p.discount_rate;
+  const annuity = (1 - Math.pow(1 + r, -n)) / r;
+  return { fuel, iceM, homeE, pubE, evM, time, ice, ev, saving: ice - ev, annuity, npv: (ice - ev) * annuity - p.ev_purchase_premium_ugx };
+}
+const mUGX = (v) => (v < 0 ? "−" : "") + "UGX " + fmt(Math.abs(v) / 1e6, 1) + "M";
+const CSL = [
+  ["cPetrol", "vcPetrol", () => CP.petrol_price_ugx_per_l, (v) => (CP.petrol_price_ugx_per_l = v), (v) => fmt(v)],
+  ["cPrem", "vcPrem", () => CP.ev_purchase_premium_ugx / 1e6, (v) => (CP.ev_purchase_premium_ugx = v * 1e6), (v) => fmt(v)],
+  ["cHome", "vcHome", () => carHome, (v) => (carHome = v), (v) => fmt(v * 100) + "%"],
+  ["cDC", "vcDC", () => CP.public_dc_ugx_per_kwh, (v) => (CP.public_dc_ugx_per_kwh = v), (v) => fmt(v)],
+  ["cDet", "vcDet", () => carDet, (v) => (carDet = v), (v) => fmt(v, 1)],
+];
+CSL.forEach(([id, , , set]) => document.getElementById(id).addEventListener("input", (e) => { set(+e.target.value); carEcon(); }));
+document.getElementById("resetCar").addEventListener("click", () => { CP = { ...CP0 }; carHome = CE.personas[persona].home_share; carDet = 0; carEcon(); });
+const personaChips = document.querySelectorAll(".chip[data-persona]");
+personaChips.forEach((c) => c.addEventListener("click", () => {
+  persona = c.dataset.persona; carHome = CE.personas[persona].home_share;
+  personaChips.forEach((x) => x.setAttribute("aria-pressed", x === c)); carEcon(); carStatic();
+}));
+
+function carEcon() {
+  CSL.forEach(([id, vid, get, , f]) => { document.getElementById(id).value = get(); document.getElementById(vid).textContent = f(get()); });
+  const c = carCosts(CP, persona, carHome, carDet * 1000);
+  document.getElementById("npvBig").textContent = mUGX(c.npv);
+  document.getElementById("npvLbl").textContent = `${c.npv >= 0 ? "gained" : "lost"} over ${Math.round(CP.horizon_years)} years by choosing the electric car, after its purchase premium (discounted at ${fmt(CP.discount_rate * 100)}%)`;
+  const pb = c.saving > 0 ? CP.ev_purchase_premium_ugx / c.saving : Infinity;
+  document.getElementById("paybackLine").textContent = c.saving > 0
+    ? `Running-cost saving ${mUGX(c.saving)} a year; the premium is repaid in ${pb < 1 ? fmt(pb * 12) + " months" : fmt(pb, 1) + " years"}.`
+    : "The electric car costs more to run than the petrol car under these inputs.";
+  carCostChart(c); carPremChart();
+}
+
+function carCostChart(c) {
+  const W = 360, H = 170, m = { l: 66, r: 30, t: 8, b: 40 }, host = document.getElementById("carCostChart");
+  const s = svg(W, H); s.setAttribute("aria-label", "Annual running cost of petrol and electric car");
+  const max = Math.max(c.ice, c.ev) * 1.1, xs = (v) => m.l + (v / max) * (W - m.l - m.r);
+  ticks(0, max, 4).forEach((v) => { el("line", { x1: xs(v), x2: xs(v), y1: m.t, y2: H - m.b, stroke: css("--grid") }, s); el("text", { x: xs(v), y: H - m.b + 14, "text-anchor": "middle" }, s, fmt(v / 1e6, 0) + "M"); });
+  const rows = [
+    ["Petrol", [["Fuel", c.fuel, css("--petrol"), 1], ["Maintenance", c.iceM, css("--petrol"), 0.45]]],
+    ["Electric", [["Home charging", c.homeE, css("--electric"), 1], ["Public charging", c.pubE, css("--electric"), 0.75], ["Maintenance + battery", c.evM, css("--electric"), 0.45], ["Charging time", c.time, css("--electric"), 0.25]]],
+  ];
+  rows.forEach(([name, segs], r) => {
+    const y = m.t + 10 + r * 52; let x0 = 0;
+    el("text", { x: m.l - 8, y: y + 19, "text-anchor": "end", class: "t-ink" }, s, name);
+    segs.forEach(([lab, v, col, op]) => {
+      const rect = el("rect", { x: xs(x0) + (x0 ? 1 : 0), y, width: Math.max(0, xs(x0 + v) - xs(x0) - (x0 ? 1 : 0)), height: 30, fill: col, "fill-opacity": op, rx: 2 }, s);
+      el("title", {}, rect, `${name} · ${lab}: ${mUGX(v)} a year`); x0 += v;
+    });
+    el("text", { x: xs(x0) + 6, y: y + 19, class: "t-ink" }, s, fmt(x0 / 1e6, 1) + "M");
+  });
+  el("text", { x: m.l, y: H - 6, class: "t-2" }, s, "UGX per car-year · hover segments for detail");
+  host.replaceChildren(s);
+}
+
+function carPremChart() {
+  const W = 360, H = 190, m = { l: 46, r: 14, t: 14, b: 34 }, host = document.getElementById("carPremChart");
+  const s = svg(W, H); s.setAttribute("aria-label", "NPV against EV purchase premium");
+  const prem = []; for (let x = 0; x <= 40; x += 1) prem.push(x);
+  const vals = prem.map((x) => carCosts({ ...CP, ev_purchase_premium_ugx: x * 1e6 }, persona, carHome, carDet * 1000).npv / 1e6);
+  const lo = Math.min(0, ...vals) * 1.05, hi = Math.max(0, ...vals) * 1.1 || 1;
+  const xs = (v) => m.l + v / 40 * (W - m.l - m.r), ys = (v) => H - m.b - (v - lo) / (hi - lo) * (H - m.t - m.b);
+  ticks(lo, hi, 4).forEach((v) => { el("line", { x1: m.l, x2: W - m.r, y1: ys(v), y2: ys(v), stroke: v === 0 ? css("--ink-3") : css("--grid") }, s); el("text", { x: m.l - 6, y: ys(v) + 4, "text-anchor": "end" }, s, fmt(v, 0) + "M"); });
+  [0, 10, 20, 30, 40].forEach((v) => el("text", { x: xs(v), y: H - m.b + 15, "text-anchor": "middle" }, s, v + "M"));
+  el("path", { d: "M" + prem.map((x, i) => `${xs(x)},${ys(vals[i])}`).join("L"), fill: "none", stroke: css("--petrol"), "stroke-width": 2 }, s);
+  const cur = CP.ev_purchase_premium_ugx / 1e6, cv = carCosts(CP, persona, carHome, carDet * 1000).npv / 1e6;
+  el("circle", { cx: xs(cur), cy: ys(cv), r: 5, fill: css("--petrol"), stroke: css("--surface"), "stroke-width": 2 }, s);
+  const be = carCosts({ ...CP, ev_purchase_premium_ugx: 0 }, persona, carHome, carDet * 1000).npv / 1e6;
+  if (be > 0 && be < 40) {
+    el("line", { x1: xs(be), x2: xs(be), y1: m.t, y2: H - m.b, stroke: css("--ink-2"), "stroke-dasharray": "3 3" }, s);
+    el("text", { x: Math.min(xs(be) + 4, W - 120), y: m.t + 10, class: "t-2" }, s, "break-even premium " + fmt(be, 1) + "M");
+  }
+  el("text", { x: m.l, y: H - 4, class: "t-2" }, s, "EV purchase premium, million UGX → 5-year NPV");
+  host.replaceChildren(s);
+}
+
+function carStatic() {
+  const B = CE.by_persona[persona], h = B.mc_hist;
+  { const W = 360, H = 180, m = { l: 36, r: 10, t: 10, b: 34 }, host = document.getElementById("carMcChart"), s = svg(W, H);
+    const lo = h.edges[0], hi = h.edges.at(-1), maxC = Math.max(...h.counts);
+    const xs = (v) => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r), ys = (c) => H - m.b - c / maxC * (H - m.t - m.b);
+    ticks(lo / 1e6, hi / 1e6, 5).forEach((v) => el("text", { x: xs(v * 1e6), y: H - m.b + 15, "text-anchor": "middle" }, s, fmt(v, 0) + "M"));
+    el("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: css("--ink-3") }, s);
+    h.counts.forEach((c, i) => {
+      const x0 = xs(h.edges[i]) + 1, x1 = xs(h.edges[i + 1]) - 1, neg = h.edges[i + 1] <= 0;
+      const r = el("rect", { x: x0, y: ys(c), width: Math.max(0.5, x1 - x0), height: H - m.b - ys(c), fill: neg ? css("--ink-3") : css("--petrol"), rx: 1.5 }, s);
+      el("title", {}, r, `${mUGX(h.edges[i])} to ${mUGX(h.edges[i + 1])}: ${c} draws`);
+    });
+    if (lo < 0 && hi > 0) { el("line", { x1: xs(0), x2: xs(0), y1: m.t, y2: H - m.b, stroke: css("--ink") }, s); el("text", { x: xs(0) + 4, y: m.t + 8, class: "t-ink" }, s, "break-even"); }
+    el("text", { x: m.l, y: H - 4, class: "t-2" }, s, "5-year NPV, million UGX (grey: switching loses money)");
+    host.replaceChildren(s);
+    const [q5, q50, q95] = B.mc_quantiles;
+    document.getElementById("carMcNote").textContent = `Switching pays in ${fmt(B.mc_share_positive * 100, 0)}% of draws. Median ${mUGX(q50)}, 90% range ${mUGX(q5)} to ${mUGX(q95)}.`;
+  }
+  { const rows = B.tornado.slice(0, 7), W = 360, rowH = 24, m = { l: 150, r: 16, t: 8, b: 30 }, H = m.t + m.b + rows.length * rowH;
+    const host = document.getElementById("carTornado"), s = svg(W, H);
+    const vals = rows.flatMap((r) => [r.at_low, r.at_high]), lo = Math.min(0, ...vals), hi = Math.max(0, ...vals) * 1.05;
+    const xs = (v) => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r);
+    ticks(lo / 1e6, hi / 1e6, 4).forEach((v) => { el("line", { x1: xs(v * 1e6), x2: xs(v * 1e6), y1: m.t, y2: H - m.b, stroke: v === 0 ? css("--ink-3") : css("--grid") }, s); el("text", { x: xs(v * 1e6), y: H - m.b + 14, "text-anchor": "middle" }, s, fmt(v, 0) + "M"); });
+    rows.forEach((r, i) => {
+      const y = m.t + i * rowH + 4, a = Math.min(r.at_low, r.at_high), b = Math.max(r.at_low, r.at_high);
+      el("text", { x: m.l - 8, y: y + 12, "text-anchor": "end", class: "t-2" }, s, CPRETTY[r.parameter] || r.parameter);
+      const rect = el("rect", { x: xs(a), y, width: Math.max(1, xs(b) - xs(a)), height: rowH - 8, fill: css("--petrol"), rx: 2 }, s);
+      el("title", {}, rect, `${CPRETTY[r.parameter]}: NPV ${mUGX(r.at_low)} at low, ${mUGX(r.at_high)} at high`);
+    });
+    el("line", { x1: xs(rows[0].base), x2: xs(rows[0].base), y1: m.t, y2: H - m.b, stroke: css("--ink"), "stroke-width": 1.5 }, s);
+    el("text", { x: m.l, y: H - 4, class: "t-2" }, s, "5-year NPV as each input moves low → high");
+    host.replaceChildren(s);
+  }
+}
+
+function carParamTable() {
+  const f = (k, v) => k === "ev_purchase_premium_ugx" ? fmt(v / 1e6, 0) + "M" : k === "discount_rate" ? fmt(v * 100) + "%" : k === "ev_kwh_per_km" ? fmt(v, 2) : fmt(v, 1);
+  document.getElementById("carParamTable").innerHTML = `<thead><tr><th>Input</th><th>Base</th><th>Range</th><th>Source</th></tr></thead><tbody>` +
+    CE.params.map((p) => { const a = p.source.startsWith("ASSUMPTION");
+      return `<tr><td>${CPRETTY[p.parameter] || p.parameter}</td><td class="num">${f(p.parameter, p.base)}</td><td class="num">${f(p.parameter, p.low)}–${f(p.parameter, p.high)}</td><td>${a ? '<span class="tag assume">assumption</span> ' + p.source.replace(/^ASSUMPTION:\s*/, "") : p.source}</td></tr>`;
+    }).join("") + "</tbody>";
+}
+
+/* ---------- proposed sites table ---------- */
+let planKind = "swap";
+const PLAN_COLS = {
+  swap: [["rank", "#", (v) => "S" + v], ["name", "Site", (v) => v || "unnamed"], ["site_type", "Host", (v) => String(v).replace("_", " ")],
+         ["lat", "Lat", (v) => fmt(v, 4)], ["lon", "Lon", (v) => fmt(v, 4)], ["cumulative_coverage_pct", "Cum. cover", (v) => fmt(v, 0) + "%"],
+         ["motorcycles", "Motorcycles in catchment", (v) => fmt(v)], ["swaps_day_25pct", "Swaps/day (25%)", (v) => fmt(v)],
+         ["cabinets_25pct", "Cabinets", (v) => fmt(v)], ["grid_kw_25pct", "Peak kW", (v) => fmt(v)], ["grid_class_25pct", "Grid connection", (v) => v],
+         ["slope_deg", "Slope", (v) => fmt(v, 1) + "°"], ["above_valley_floor_m", "Above valley floor", (v) => fmt(v) + " m"], ["site_screen", "Site check", (v) => v]],
+  charger: [["rank", "#", (v) => "C" + v], ["name", "Site", (v) => v || "unnamed"], ["site_type", "Host", (v) => String(v).replace("_", " ")],
+            ["lat", "Lat", (v) => fmt(v, 4)], ["lon", "Lon", (v) => fmt(v, 4)], ["cumulative_coverage_pct", "Cum. cover", (v) => fmt(v, 0) + "%"],
+            ["catchment_pop", "People in catchment", (v) => fmt(v)], ["kwh_day_2000cars", "kWh/day (2,000 cars)", (v) => fmt(v)],
+            ["dc_ports_2000cars", "60 kW ports", (v) => fmt(v)], ["grid_kw_2000cars", "Peak kW", (v) => fmt(v)], ["grid_class_2000cars", "Grid connection", (v) => v],
+            ["slope_deg", "Slope", (v) => fmt(v, 1) + "°"], ["above_valley_floor_m", "Above valley floor", (v) => fmt(v) + " m"], ["site_screen", "Site check", (v) => v]],
+};
+function planTable() {
+  const cols = PLAN_COLS[planKind], rows = D.plans[planKind];
+  document.getElementById("planTable").innerHTML = `<thead><tr>${cols.map(([, h]) => `<th>${h}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map((r) => `<tr>${cols.map(([k, , f]) => {
+      const v = r[k], txt = v == null ? "–" : f(v);
+      const tag = k === "site_screen" ? `<span class="tag${v === "suitable" ? "" : " assume"}">${txt}</span>` : k.startsWith("grid_class") ? `<span class="tag">${txt}</span>` : txt;
+      return `<td class="${typeof v === "number" ? "num" : ""}">${tag}</td>`;
+    }).join("")}</tr>`).join("") + "</tbody>";
+}
+document.querySelectorAll(".chip[data-plan]").forEach((c) => c.addEventListener("click", () => {
+  planKind = c.dataset.plan; document.querySelectorAll(".chip[data-plan]").forEach((x) => x.setAttribute("aria-pressed", x === c)); planTable();
+}));
+
+/* ---------- boot ---------- */
+let initial = "boda"; try { initial = localStorage.getItem("atlasLayer") || "boda"; } catch (_) {}
+if (!LAYERS[initial]) initial = "boda";
+chips.forEach((c) => c.setAttribute("aria-pressed", c.dataset.layer === initial));
+state.layer = initial;
+window.addEventListener("resize", resize);
+const redrawAll = () => { draw(); coverChart(); econ(); mcChart(); tornadoChart(); carEcon(); carStatic(); };
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redrawAll);
+new MutationObserver(redrawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+resize(); coverChart(); econ(); mcChart(); tornadoChart(); paramTable(); carEcon(); carStatic(); carParamTable(); planTable();
+</script>

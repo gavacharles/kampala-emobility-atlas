@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "Kampala E-Mobility Atlas: open-data suitability, siting and economics of electric motorcycle taxis and electric cars in Greater Kampala"
+authors:
+  - family-names: Gava
+    given-names: Charles
+    email: gavacharles85@gmail.com
+version: 1.0.0
+date-released: 2026-10-17
+license: MIT
+repository-code: "https://github.com/gavacharles/kampala-emobility-atlas"
+url: "https://gavacharles.github.io/kampala-emobility-atlas/"
+keywords:
+  - electric mobility
+  - boda-boda
+  - battery swapping
+  - EV charging
+  - maximal covering location problem
+  - Kampala
+  - Uganda
+  - GIS
+  - remote sensing

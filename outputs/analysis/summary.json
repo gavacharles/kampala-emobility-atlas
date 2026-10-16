@@ -1,0 +1,190 @@
+{
+  "n_active_cells": 1968,
+  "pop_2025_active": 6447401.5394063,
+  "moran_boda_suitability": {
+    "I": 0.8181708027779241,
+    "E[I]": -0.0005083884087442806,
+    "z": 68.30805598696652,
+    "p_perm": 0.001
+  },
+  "gi_boda_suitability": {
+    "hot": 392,
+    "cold": 172,
+    "ns": 1404
+  },
+  "moran_car_suitability": {
+    "I": 0.6633978183140289,
+    "E[I]": -0.0005083884087442806,
+    "z": 56.45772159911797,
+    "p_perm": 0.001
+  },
+  "gi_car_suitability": {
+    "hot": 263,
+    "cold": 150,
+    "ns": 1555
+  },
+  "moran_housing_wealth_proxy": {
+    "I": 0.2706325839637265,
+    "E[I]": -0.0005083884087442806,
+    "z": 21.73303021611213,
+    "p_perm": 0.001
+  },
+  "gi_housing_wealth_proxy": {
+    "hot": 54,
+    "cold": 55,
+    "ns": 1859
+  },
+  "moran_pop_growth_2020_2025": {
+    "I": 0.9662169350979116,
+    "E[I]": -0.0005083884087442806,
+    "z": 82.6219615567198,
+    "p_perm": 0.001
+  },
+  "gi_pop_growth_2020_2025": {
+    "hot": 311,
+    "cold": 0,
+    "ns": 1657
+  },
+  "coverage": {
+    "n10": {
+      "greedy": 0.27890005703350595,
+      "fuel_only": 0.2721249888791244,
+      "random_mean": 0.14398801260749744,
+      "exact_optimum": 0.2915918585870198,
+      "solver_gap": 0.0,
+      "greedy_gap_pp": 1.2691801553513848
+    },
+    "n30": {
+      "greedy": 0.5494417105067291,
+      "fuel_only": 0.5364786110562692,
+      "random_mean": 0.3302481545565368,
+      "exact_optimum": 0.5763783192298747,
+      "solver_gap": 0.0,
+      "greedy_gap_pp": 2.6936608723145627
+    },
+    "n60": {
+      "greedy": 0.7455537107301843,
+      "fuel_only": 0.7349300234500821,
+      "random_mean": 0.48846941257266424,
+      "exact_optimum": 0.7670548169391458,
+      "solver_gap": 0.0,
+      "greedy_gap_pp": 2.1501106208961507
+    }
+  },
+  "coverage_by_radius_n30": {
+    "1500": 0.3115196619545342,
+    "2500": 0.5494417105067291,
+    "3500": 0.7703224581788276
+  },
+  "weight_robust_siting": {
+    "jaccard_mean": 0.756108639654192,
+    "jaccard_p5": 0.5,
+    "coverage_loss_mean_pp": -0.4100283605103727,
+    "sites_selected_ge80pct": 21,
+    "base_sites_selected_ge80pct": 21
+  },
+  "concentration_index_coverage_n30_by_wealth": -0.06248494765104321,
+  "concentration_index_car_suitability_by_wealth": 0.06175429991875224,
+  "economics_base": {
+    "daily_saving_ugx": 5902.546296296296,
+    "break_even_petrol_price": 3017.663817663818,
+    "break_even_detour_km": 15.22873865265169
+  },
+  "economics_mc": {
+    "p_positive": 1.0,
+    "q05": 3452.4241376175823,
+    "median": 6345.017092840865,
+    "q95": 10616.681792070736
+  },
+  "car_coverage": {
+    "n5": {
+      "greedy": 0.43559302044991616,
+      "exact_optimum": 0.45792059857360307,
+      "solver_gap": 0.0,
+      "random_mean": 0.25873169283133296
+    },
+    "n10": {
+      "greedy": 0.6241629688566046,
+      "exact_optimum": 0.6421624466520034,
+      "solver_gap": 3.510036248508473e-05,
+      "random_mean": 0.3933725944763659
+    },
+    "n20": {
+      "greedy": 0.8139697287916323,
+      "exact_optimum": 0.8443213580002886,
+      "solver_gap": 0.0,
+      "random_mean": 0.5531515824895094
+    }
+  },
+  "car_coverage_by_radius_n10": {
+    "3000": 0.3634849110179352,
+    "5000": 0.6241629688566046,
+    "8000": 0.8549551660187388
+  },
+  "concentration_index_car_coverage_n10_by_wealth": -0.07525695713909457,
+  "home_charging": {
+    "pop_weighted_mean": 0.4649946076416027,
+    "by_wealth": {
+      "not built-up": 0.8,
+      "Q2": 0.3320178294026009,
+      "Q4": 0.6860521421531018,
+      "Q5 (most)": 0.9229568231301991,
+      "Q1 (least)": 0.12726292604048822,
+      "Q3": 0.5165905368695459
+    }
+  },
+  "car_economics": {
+    "private": {
+      "annual_saving": 4974019.2,
+      "npv": 4673683.818886591,
+      "payback_years": 2.412535922659888,
+      "break_even_premium": 16673683.818886591,
+      "p_npv_positive": 0.523,
+      "npv_q05_q50_q95": [
+        -12320315.639767703,
+        351089.97142221034,
+        11974090.79694431
+      ],
+      "top_drivers": [
+        "ev_purchase_premium_ugx",
+        "ice_km_per_l",
+        "horizon_years",
+        "petrol_price_ugx_per_l"
+      ]
+    },
+    "ridehail": {
+      "annual_saving": 18471383.479999997,
+      "npv": 49918942.29980556,
+      "payback_years": 0.6496535580560641,
+      "break_even_premium": 61918942.29980556,
+      "p_npv_positive": 0.9636,
+      "npv_q05_q50_q95": [
+        2514974.48607233,
+        32142051.77716966,
+        67154435.89624755
+      ],
+      "top_drivers": [
+        "ice_km_per_l",
+        "horizon_years",
+        "public_dc_ugx_per_kwh",
+        "ev_purchase_premium_ugx"
+      ]
+    },
+    "private_saving_by_home_share": {
+      "0": 3670000.0,
+      "0.25": 4077506.0,
+      "0.5": 4485012.0,
+      "0.75": 4892518.0,
+      "1": 5300024.0
+    }
+  },
+  "spearman_boda_car": 0.8201680444799279,
+  "robust_top10_cells": {
+    "boda_ge0.5": 194,
+    "boda_ge0.7": 183,
+    "boda_ge0.9": 163,
+    "car_ge0.5": 197,
+    "car_ge0.7": 170,
+    "car_ge0.9": 130
+  }
+}
