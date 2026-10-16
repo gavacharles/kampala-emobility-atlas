@@ -47,6 +47,7 @@ body {
   padding-block: 28px 56px;
 }
 .wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 40px; }
+.wrap > *, section > *, .atlas > *, .econ > *, .charts > * { min-width: 0; }
 h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
 h1 { font-size: clamp(2rem, 4.6vw, 3.1rem); line-height: 1.05; font-weight: 700; }
 h2 { font-size: 1.55rem; font-weight: 700; }
@@ -141,7 +142,7 @@ footer a { color: var(--ink-2); }
     <span class="eyebrow">Greater Kampala · 1 km grid · October 2026</span>
     <h1>Where electric bodas and electric cars can take hold, and where their swap stations and chargers should go</h1>
     <p class="lede">A public-data atlas of EV adoption suitability across Greater Kampala: 60 proposed battery-swap sites for e-bodas, 30 proposed fast-charging sites for e-cars, the economics for riders, drivers and car owners, and the terrain, flood and grid checks on every site. Scores rank places against each other; they are not adoption probabilities.</p>
-    <span class="flag">Built without operator data. Only <span id="nStations" class="mono">3</span>&nbsp;swap/charging stations are mapped in OpenStreetMap, and Uganda imported only 17 fully electric cars from 2022 to April 2024.</span>
+    <span class="flag"><span>Built without operator data. Only <b id="nStations">3</b> swap/charging stations are mapped in OpenStreetMap, and Uganda imported only 17 fully electric cars from 2022 to April 2024.</span></span>
   </header>
 
   <div class="kpis" id="kpis"></div>
@@ -331,7 +332,7 @@ const NETS = {
           desc: (km) => `Fast-charging sites are added one at a time, each chosen to reach the most uncovered e-car demand within ${km} km by road. Demand is 2025 population weighted by e-car suitability. Candidates: fuel stations, car parks, car dealers.` },
 };
 const net = () => NETS[state.net];
-const satImg = new Image(); satImg.onload = () => draw(); satImg.src = D.satellite.uri;
+const satImg = new Image(); satImg.onload = () => requestAnimationFrame(() => draw()); satImg.src = D.satellite.uri;
 document.getElementById("satDate").textContent = D.satellite.date;
 const popAt = (i, y) => {
   const a = C.pop2020[i] ?? 0, b = C.pop2025[i] ?? 0, c = C.pop2030[i] ?? 0;
@@ -369,7 +370,6 @@ const LAYERS = {
   ];
   document.getElementById("kpis").innerHTML = tiles.map(([v, l]) => `<div class="kpi"><span class="v">${v}</span><span class="l">${l}</span></div>`).join("");
   document.getElementById("nStations").textContent = D.stations.length;
-  document.getElementById("coverKm").textContent = fmt(D.config.cover_road_m / 1000, 1);
 })();
 
 /* ---------- map ---------- */
@@ -745,9 +745,9 @@ const CE = D.car_economics, CP0 = Object.fromEntries(CE.params.map((p) => [p.par
 let CP = { ...CP0 }, persona = "ridehail", carHome = CE.personas.ridehail.home_share, carDet = 0;
 const CPRETTY = {
   petrol_price_ugx_per_l: "Petrol price", ice_km_per_l: "Petrol car km/L", ev_kwh_per_km: "EV kWh per km", home_tariff_ugx_per_kwh: "Home tariff",
-  public_dc_ugx_per_kwh: "Public fast-charging price", ice_maint_ugx_per_km: "Petrol maintenance per km", ev_maint_ugx_per_km: "EV maintenance per km",
-  battery_reserve_ugx_per_km: "Battery reserve per km", range_per_charge_km: "Km per fast-charge session", dc_session_min: "Minutes per session",
-  ev_purchase_premium_ugx: "EV purchase premium", discount_rate: "Discount rate", horizon_years: "Holding period, years",
+  public_dc_ugx_per_kwh: "Public DC price", ice_maint_ugx_per_km: "Petrol upkeep", ev_maint_ugx_per_km: "EV upkeep",
+  battery_reserve_ugx_per_km: "Battery reserve", range_per_charge_km: "Km per DC session", dc_session_min: "Minutes per session",
+  ev_purchase_premium_ugx: "EV premium", discount_rate: "Discount rate", horizon_years: "Holding period",
 };
 function carCosts(p, per, hs, d) {
   const q = CE.personas[per], km = q.daily_km * q.days;
@@ -849,7 +849,7 @@ function carStatic() {
     const [q5, q50, q95] = B.mc_quantiles;
     document.getElementById("carMcNote").textContent = `Switching pays in ${fmt(B.mc_share_positive * 100, 0)}% of draws. Median ${mUGX(q50)}, 90% range ${mUGX(q5)} to ${mUGX(q95)}.`;
   }
-  { const rows = B.tornado.slice(0, 7), W = 360, rowH = 24, m = { l: 150, r: 16, t: 8, b: 30 }, H = m.t + m.b + rows.length * rowH;
+  { const rows = B.tornado.slice(0, 7), W = 360, rowH = 24, m = { l: 128, r: 16, t: 8, b: 30 }, H = m.t + m.b + rows.length * rowH;
     const host = document.getElementById("carTornado"), s = svg(W, H);
     const vals = rows.flatMap((r) => [r.at_low, r.at_high]), lo = Math.min(0, ...vals), hi = Math.max(0, ...vals) * 1.05;
     const xs = (v) => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r);
