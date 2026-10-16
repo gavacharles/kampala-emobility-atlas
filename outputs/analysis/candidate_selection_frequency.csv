@@ -1,0 +1,558 @@
+osm_id,name,operator,layer,site_type,selection_frequency,in_base_top30,lat,lon
+node/294017593,Hass Petrol station,,fuel,fuel,0.0,False,0.30296,32.52532
+node/294017595,,Total,fuel,fuel,0.0,False,0.33519,32.54825
+node/294017600,Kobil,Kobil,fuel,fuel,0.0,False,0.32184,32.5737
+node/294022801,Shell,Shell,fuel,fuel,0.0,False,0.3156,32.58043
+node/294022813,Superoil,Shell,fuel,fuel,0.0,False,0.3126,32.58632
+node/294024247,Shell Clock Tower,Shell,fuel,fuel,0.0,False,0.3094,32.57837
+node/294026639,Total Mengo Star,Total,fuel,fuel,0.06,False,0.3116,32.55962
+node/294027200,Shell Mengo,Shell,fuel,fuel,0.0,False,0.30908,32.55651
+node/598090311,Oryx Energies,,fuel,fuel,0.0,False,0.32705,32.60516
+node/598134693,PETRO,,fuel,fuel,0.0,False,0.29975,32.59511
+node/598134722,Shell,Shell,fuel,fuel,0.0,False,0.29818,32.5989
+node/598134741,Shell Petrol Station Portbell,Shell,fuel,fuel,0.0,False,0.318,32.62932
+node/601370312,Kobil,Kobil,fuel,fuel,0.0,False,0.34189,32.58904
+node/601429640,Total Kitintale,Total Energies,fuel,fuel,0.0,False,0.3036,32.64417
+node/601430557,,Total,fuel,fuel,0.0,False,0.30139,32.64739
+node/606672246,Gaz,,fuel,fuel,0.0,False,0.31705,32.63181
+node/606674615,Concorp,,fuel,fuel,0.0,False,0.33855,32.62686
+node/606756690,,,fuel,fuel,0.0,False,0.35086,32.64563
+node/606846792,Chello Petrol Station,,fuel,fuel,0.0,False,0.32359,32.63689
+node/606953339,Shell bugolobi,Shell,fuel,fuel,0.0,False,0.32032,32.61725
+node/608969412,Kobil,,fuel,fuel,0.0,False,0.29099,32.60581
+node/610337922,,,fuel,fuel,0.0,False,0.34455,32.59228
+node/610939422,SP,,fuel,fuel,0.0,False,0.30831,32.64019
+node/611186906,Shell,Shell,fuel,fuel,0.0,False,0.06983,32.47604
+node/613003523,Cibra Energy,,fuel,fuel,0.0,False,0.314,32.63479
+node/613003712,Total,Total,fuel,fuel,0.0,False,0.31423,32.59735
+node/613003714,Jaub Oil,,fuel,fuel,0.0,False,0.30948,32.60047
+node/613003718,Total,Total,fuel,fuel,0.0,False,0.3065,32.60069
+node/614132447,Mogas,,fuel,fuel,0.0,False,0.04164,32.44852
+node/614132487,,Shell,fuel,fuel,0.0,False,0.11233,32.52729
+node/614132489,Kobil,,fuel,fuel,0.0,False,0.09255,32.49897
+node/614132490,Petro,,fuel,fuel,0.0,False,0.14163,32.54161
+node/614132493,Total Kajjansi Service Station,Total,fuel,fuel,0.0,False,0.21132,32.54202
+node/614132494,Mogas,,fuel,fuel,1.0,True,0.21855,32.54456
+node/614132496,Fuelex,,fuel,fuel,0.0,False,0.22685,32.54947
+node/614132498,Hared,Hared,fuel,fuel,0.0,False,0.23788,32.55501
+node/614132500,Mogas,,fuel,fuel,0.0,False,0.24041,32.55611
+node/614132507,TOTAL NAJJANANKUMBI SERVICE STATION,Total,fuel,fuel,0.0,False,0.28906,32.56974
+node/614132525,,Shell,fuel,fuel,0.0,False,0.32897,32.61242
+node/614132528,Shell Banda,Shell,fuel,fuel,0.0,False,0.34497,32.64248
+node/614132532,Shell Kireka,Shell,fuel,fuel,0.09,False,0.3469,32.64936
+node/614132533,Upet,,fuel,fuel,0.0,False,0.35285,32.66176
+node/614132535,Hared,,fuel,fuel,0.0,False,0.35292,32.66441
+node/614132539,Oilcom,,fuel,fuel,0.0,False,0.35987,32.69106
+node/614132546,Mogas,,fuel,fuel,0.0,False,0.36513,32.70131
+node/614132550,,Total,fuel,fuel,0.0,False,0.36834,32.71168
+node/614132555,,Total,fuel,fuel,0.0,False,0.37022,32.71698
+node/614132557,Oilcom,,fuel,fuel,0.0,False,0.36935,32.73751
+node/614132558,,Total,fuel,fuel,0.0,False,0.36493,32.74152
+node/614132560,,Total,fuel,fuel,0.0,False,0.35942,32.74697
+node/614132565,Igar,,fuel,fuel,0.0,False,0.3531,32.78371
+node/616288120,Superoil,,fuel,fuel,0.0,False,0.30122,32.60193
+node/616311337,Total,Total,fuel,fuel,0.0,False,0.31281,32.57474
+node/616311533,Total,Total,fuel,fuel,0.0,False,0.31833,32.59795
+node/616311538,Petro,,fuel,fuel,0.0,False,0.31932,32.60017
+node/616348964,Mutungo Fueling,,fuel,fuel,1.0,True,0.32063,32.64536
+node/619331111,,Shell,fuel,fuel,0.0,False,0.34196,32.61554
+node/639104969,Hass Gas Station,Hass,fuel,fuel,0.0,False,0.2764,32.61486
+node/664584085,Gapco,,fuel,fuel,0.0,False,0.05472,32.46172
+node/664584112,Baj,,fuel,fuel,0.0,False,0.05527,32.46323
+node/674103228,Gapco,,fuel,fuel,0.0,False,0.06582,32.47358
+node/993664491,,Hass,fuel,fuel,0.0,False,0.2896,32.58329
+node/993664573,,Shell,fuel,fuel,0.0,False,0.2733,32.61827
+node/1014756692,MOil,MOil,fuel,fuel,0.0,False,0.11623,32.52974
+node/1312750598,Gaz,Gaz,fuel,fuel,0.04,False,0.36845,32.60329
+node/1312757072,Bytrust petrol station,,fuel,fuel,0.07,False,0.36876,32.59679
+node/1313050346,Shell Ntinda,Vivo Energy,fuel,fuel,0.6,True,0.35283,32.61013
+node/1313050347,,Total,fuel,fuel,0.0,False,0.35359,32.61123
+node/1313059459,Petrocity,,fuel,fuel,0.0,False,0.35457,32.61471
+node/1327604795,Petro,,fuel,fuel,0.0,False,0.35347,32.56258
+node/1365158851,Kobil,Kobil,fuel,fuel,0.0,False,0.38012,32.55685
+node/1459913376,Rioli Ggaba,,fuel,fuel,0.0,False,0.25652,32.63625
+node/1459913400,Hared Petrol Station,,fuel,fuel,0.0,False,0.2558,32.63474
+node/1556646638,Roil Petrol Station,Roil,fuel,fuel,1.0,True,0.38942,32.62536
+node/1681146176,,,fuel,fuel,0.0,False,0.26653,32.43308
+node/1681146189,,Safa Energy,fuel,fuel,0.0,False,0.26382,32.42844
+node/1694418949,Gaz,,fuel,fuel,0.0,False,0.20784,32.54106
+node/1735412127,,,fuel,fuel,0.0,False,0.28853,32.57859
+node/1784861664,Total,Total,fuel,fuel,0.0,False,0.30104,32.59277
+node/2080011581,,Shell,fuel,fuel,0.0,False,0.3481,32.57115
+node/2080016322,Hass,,fuel,fuel,0.0,False,0.34014,32.57192
+node/2080016639,Shell,Shell,fuel,fuel,0.0,False,0.33458,32.57668
+node/2084243568,Gapco,,fuel,fuel,0.0,False,0.30998,32.57751
+node/2087511545,Rubis,,fuel,fuel,0.0,False,0.33207,32.55602
+node/2091948634,Fuelex,,fuel,fuel,0.0,False,0.2971,32.54138
+node/2193892644,Gapco,,fuel,fuel,0.0,False,0.32047,32.56296
+node/2264323011,,Diesel,fuel,fuel,0.0,False,0.29142,32.6213
+node/2321105578,Shell Petrol Station,Shell,fuel,fuel,0.0,False,0.33873,32.56347
+node/2332703885,,,fuel,fuel,0.0,False,0.31327,32.54672
+node/2354898370,Oryx Energy,Onyx Energy,fuel,fuel,0.0,False,0.26568,32.62487
+node/2527816910,Rubis Makerere,,fuel,fuel,0.0,False,0.32762,32.56816
+node/2534665828,Total Kyengera,,fuel,fuel,0.0,False,0.29645,32.50519
+node/2645650007,,,fuel,fuel,0.0,False,0.31605,32.56403
+node/2647695461,,Total,fuel,fuel,0.0,False,0.30074,32.53701
+node/2687993561,Total,Total,fuel,fuel,0.0,False,0.3144,32.56455
+node/2694485723,Petro,Petro,fuel,fuel,0.0,False,0.32607,32.57385
+node/3012010134,JS Oils,JS Oils,fuel,fuel,0.0,False,0.26667,32.62308
+node/3059098842,City Oil,,fuel,fuel,0.0,False,0.31428,32.56591
+node/3071944589,,,fuel,fuel,0.0,False,0.28505,32.48899
+node/3071944590,,,fuel,fuel,0.0,False,0.2786,32.47775
+node/3071944591,Kobil,,fuel,fuel,0.0,False,0.27279,32.46632
+node/3071944592,Banoda,,fuel,fuel,0.0,False,0.27181,32.46411
+node/3071944593,SR Petroleum,,fuel,fuel,0.0,False,0.27294,32.46156
+node/3071944594,Shire,,fuel,fuel,0.0,False,0.28077,32.45753
+node/3071944596,,,fuel,fuel,0.0,False,0.28028,32.44865
+node/3112500609,fuel plus,,fuel,fuel,0.0,False,0.33063,32.67391
+node/3207311699,Shell,Shell,fuel,fuel,0.0,False,0.31582,32.57733
+node/3278662119,GAZ,,fuel,fuel,0.0,False,0.4655,32.52196
+node/3380732503,Oilcom,,fuel,fuel,0.0,False,0.30364,32.56436
+node/3380754156,Shell Petrol Station,,fuel,fuel,0.0,False,0.30706,32.56254
+node/3381058814,,Planet,fuel,fuel,0.0,False,0.34788,32.56476
+node/3382361024,Oryx,,fuel,fuel,0.0,False,0.30782,32.56292
+node/3391585266,Petrocity,,fuel,fuel,0.0,False,0.36037,32.74651
+node/3391585283,,Shell,fuel,fuel,0.0,False,0.35607,32.7548
+node/3391593761,Hass,,fuel,fuel,0.0,False,0.36712,32.73923
+node/3391593775,Shire,,fuel,fuel,0.0,False,0.35313,32.6693
+node/3391593779,,Total,fuel,fuel,0.0,False,0.35165,32.66085
+node/3391593781,Africa Oil,Africa Oil,fuel,fuel,0.91,True,0.35136,32.65639
+node/3397195481,City Oil,,fuel,fuel,0.0,False,0.33648,32.62065
+node/3404121864,AS Energy,,fuel,fuel,0.0,False,0.35808,32.56227
+node/3404121865,Africa Oil,,fuel,fuel,0.0,False,0.35239,32.56298
+node/3406830189,AS Energy,,fuel,fuel,0.0,False,0.40551,32.5421
+node/3406830190,OilLibya,,fuel,fuel,0.0,False,0.39698,32.54696
+node/3406834703,Oil Com,,fuel,fuel,0.4,False,0.39222,32.54932
+node/3406834818,,Shell,fuel,fuel,0.0,False,0.33334,32.57316
+node/3406834819,,Shell,fuel,fuel,0.0,False,0.33854,32.57179
+node/3406834822,,Shell,fuel,fuel,0.0,False,0.33577,32.57273
+node/3406834824,,Total,fuel,fuel,0.0,False,0.34387,32.57116
+node/3417088189,Caltex,,fuel,fuel,0.0,False,0.25518,32.81685
+node/3428758983,Ttula Road Service,,fuel,fuel,0.0,False,0.3728,32.5686
+node/3429319699,City Oil,,fuel,fuel,0.0,False,0.33819,32.58555
+node/3429319701,OilLibya,,fuel,fuel,0.0,False,0.45751,32.53048
+node/3429319706,muer,,fuel,fuel,0.0,False,0.41641,32.53676
+node/3429319711,Petrocity,,fuel,fuel,0.0,False,0.35444,32.61234
+node/3429320059,Shell,Shell,fuel,fuel,0.0,False,0.34504,32.59626
+node/3439349539,City Oil,,fuel,fuel,0.0,False,0.32558,32.57382
+node/3449158760,Africa Oil,,fuel,fuel,0.0,False,0.36222,32.56107
+node/3449158762,Fuelex,,fuel,fuel,0.0,False,0.36673,32.56009
+node/3449158767,Petro,,fuel,fuel,0.0,False,0.32581,32.58475
+node/3449159083,Tosha,,fuel,fuel,0.0,False,0.34446,32.56907
+node/3449159084,,Total,fuel,fuel,0.0,False,0.34374,32.56956
+node/3449159085,,Total,fuel,fuel,0.0,False,0.36694,32.55945
+node/3466160581,Shell Kajjansi,Shell,fuel,fuel,0.0,False,0.21395,32.54224
+node/3466160583,Stabex,,fuel,fuel,0.0,False,0.13724,32.53808
+node/3474118560,Stabex Fuel Station,,fuel,fuel,0.0,False,0.24233,32.55642
+node/3474119136,Regnol,,fuel,fuel,0.0,False,0.23568,32.55361
+node/3559209881,,Total,fuel,fuel,0.0,False,0.38838,32.55191
+node/3623524088,Agallani,,fuel,fuel,0.0,False,0.28971,32.57995
+node/3623525242,Shell Kaazi,Shell,fuel,fuel,0.0,False,0.28675,32.56926
+node/3623525245,Shell Najjanankumbi,,fuel,fuel,0.0,False,0.28321,32.56711
+node/3623525246,TOTAL KIBUYE SERVICE STATION,Total,fuel,fuel,0.0,False,0.29101,32.57148
+node/3625332062,Total,Total,fuel,fuel,0.0,False,0.31977,32.59539
+node/3632438481,Kobil,,fuel,fuel,0.0,False,0.4605,32.5286
+node/3642466800,meru,meru,fuel,fuel,1.0,True,0.06059,32.4726
+node/3642466801,,Total,fuel,fuel,0.0,False,0.07753,32.47958
+node/3646574528,Gapco,,fuel,fuel,0.0,False,0.07892,32.45012
+node/3668904689,Total,Total,fuel,fuel,0.0,False,0.31639,32.57501
+node/3713784685,,,fuel,fuel,0.0,False,0.3391,32.51129
+node/3736959052,Shell Kitende,Shell,fuel,fuel,0.0,False,0.20014,32.54027
+node/3745975284,TOSHA,TOSHA,fuel,fuel,0.15,False,0.33966,32.54517
+node/3781169876,,Shell,fuel,fuel,0.0,False,0.45021,32.6116
+node/3799573899,Moil,,fuel,fuel,0.0,False,0.32901,32.57471
+node/3804540484,Horse Power,,fuel,fuel,0.6,True,0.35493,32.57253
+node/3804593198,RUBiS,RUBiS,fuel,fuel,0.0,False,0.35619,32.57284
+node/3808219397,ECOil,,fuel,fuel,0.0,False,0.3081,32.56957
+node/3848936967,Agopex,,fuel,fuel,0.0,False,0.36293,32.5553
+node/3939179990,,,fuel,fuel,0.0,False,0.27497,32.45955
+node/3939180007,,,fuel,fuel,0.0,False,0.27841,32.47442
+node/3939180029,,,fuel,fuel,0.0,False,0.28214,32.4517
+node/3942872031,,,fuel,fuel,0.0,False,0.31386,32.58962
+node/3950386057,Don,,fuel,fuel,0.0,False,0.46443,32.52378
+node/3957035926,,Shell,fuel,fuel,0.0,False,0.31981,32.56644
+node/3998484513,K-Oil,,fuel,fuel,0.0,False,0.25825,32.50859
+node/4003312792,,Total Terminal Pump Station,fuel,fuel,0.0,False,0.33021,32.61881
+node/4005818990,Shell,Shell,fuel,fuel,0.0,False,0.32703,32.60439
+node/4017085265,Shell Fuel Station,Shell,fuel,fuel,0.4,False,0.36285,32.6252
+node/4055978902,,,fuel,fuel,0.0,False,0.33403,32.58784
+node/4056009160,Oilcom,,fuel,fuel,0.0,False,0.32906,32.56471
+node/4056972202,,,fuel,fuel,0.0,False,0.37663,32.5506
+node/4056989214,Gasline,,fuel,fuel,0.0,False,0.4493,32.53197
+node/4056989220,,,fuel,fuel,0.0,False,0.46597,32.52059
+node/4290952727,,,fuel,fuel,0.0,False,0.34252,32.64443
+node/4427590923,Total Ben Kiwanuka,Total,fuel,fuel,0.0,False,0.30956,32.57716
+node/4570014774,Fuel/Gas Station,,fuel,fuel,0.0,False,0.27256,32.55575
+node/4680853178,QC Petrol station,,fuel,fuel,0.0,False,0.15237,32.80187
+node/4818185325,SR Petroleum,,fuel,fuel,0.0,False,0.35091,32.77584
+node/4820486521,Petrocity,,fuel,fuel,0.0,False,0.12564,32.53014
+node/4820486821,Hanan oil,,fuel,fuel,0.0,False,0.19877,32.54011
+node/4820486822,Nganda oils,,fuel,fuel,0.0,False,0.10873,32.52454
+node/4820488626,Total Seguku Service Station,Total UGANDA,fuel,fuel,0.0,False,0.23461,32.55311
+node/4824895729,,Total,fuel,fuel,0.0,False,0.39456,32.68371
+node/4824895730,,,fuel,fuel,0.0,False,0.37756,32.70985
+node/4824895734,,,fuel,fuel,0.0,False,0.3509,32.76171
+node/4824895735,Petrocity,,fuel,fuel,0.0,False,0.38463,32.8395
+node/4824896526,MC2,,fuel,fuel,0.51,True,0.36681,32.63914
+node/4824896528,,,fuel,fuel,0.0,False,0.39494,32.69507
+node/4824896932,,Shell,fuel,fuel,0.0,False,0.39565,32.70018
+node/4824905323,,,fuel,fuel,0.51,True,0.39046,32.65887
+node/4824906926,Sunshare,,fuel,fuel,0.0,False,0.35226,32.78213
+node/4824909521,,,fuel,fuel,0.0,False,0.38575,32.70709
+node/4825695422,,Shell,fuel,fuel,0.0,False,0.29083,32.56325
+node/4825695423,RUBiS,,fuel,fuel,0.0,False,0.32668,32.56297
+node/4825695424,Mogas,,fuel,fuel,0.0,False,0.36372,32.63559
+node/4825695522,Shell Ndeeba,Shell,fuel,fuel,0.0,False,0.29344,32.56404
+node/4825695921,Dashell,,fuel,fuel,0.49,False,0.38999,32.65683
+node/4825695922,Gaz,Gaz,fuel,fuel,0.0,False,0.37793,32.70967
+node/4828108825,Mo Petro,,fuel,fuel,1.0,True,0.25834,32.56495
+node/4924609683,Petrocity,,fuel,fuel,0.0,False,0.30249,32.54048
+node/4931687761,,,fuel,fuel,0.0,False,0.29558,32.54714
+node/4931984838,Hass Petroleum,,fuel,fuel,0.0,False,0.29397,32.55786
+node/4932658868,Petrocity,,fuel,fuel,0.0,False,0.29453,32.55785
+node/4935166460,,,fuel,fuel,0.0,False,0.3,32.53466
+node/4983027162,,,fuel,fuel,0.0,False,0.39264,32.76767
+node/5329213006,,,fuel,fuel,0.6,True,0.38232,32.56656
+node/5390205221,Star Petroleum,,fuel,fuel,0.01,False,0.33208,32.52803
+node/5390267022,Cleanex Energy,,fuel,fuel,0.0,False,0.34279,32.50198
+node/5391525221,GN Petroleum,,fuel,fuel,0.0,False,0.35311,32.50079
+node/5391630322,Oryx Energies,,fuel,fuel,0.0,False,0.36828,32.62495
+node/5472423469,Total Salaama Road,Total,fuel,fuel,0.0,False,0.25654,32.60476
+node/5516940255,Liqman,,fuel,fuel,0.0,False,0.29901,32.50752
+node/5534540090,Kobil,Kobil,fuel,fuel,0.0,False,0.31794,32.62821
+node/5599832026,TOTAL HORIZON NDEEBA SERVICE STATION,TOTAL UGANDA,fuel,fuel,0.0,False,0.29293,32.56702
+node/5599832221,,TOTAL UGANDA,fuel,fuel,0.0,False,0.29464,32.55259
+node/5679150619,Total,Total,fuel,fuel,0.0,False,0.29997,32.57631
+node/5971316386,,Shell,fuel,fuel,0.0,False,0.37952,32.62558
+node/5982648286,RUBiS,RUBiS,fuel,fuel,0.0,False,0.38173,32.57694
+node/6294404186,Petromax,,fuel,fuel,0.0,False,0.46951,32.51871
+node/6535456885,Kobil fuel station,Kobil Fuels,fuel,fuel,1.0,True,0.33254,32.49279
+node/6581522483,Total Makerere,Total,fuel,fuel,0.0,False,0.32983,32.57301
+node/6612618386,Shell Petrol station,,fuel,fuel,0.0,False,0.29085,32.49888
+node/6993659681,Total,Total,fuel,fuel,0.86,True,0.43772,32.60225
+node/6993659682,TotalEnergies,TotalEnergies,fuel,fuel,0.0,False,0.4412,32.60636
+node/6993659683,OilLibya,OilLibya,fuel,fuel,0.0,False,0.45868,32.61751
+node/6993659684,,,fuel,fuel,0.0,False,0.46164,32.62758
+node/6993692686,as Energy,,fuel,fuel,0.0,False,0.47528,32.67099
+node/6993692688,,Total,fuel,fuel,0.0,False,0.51303,32.76605
+node/7016594017,,Delta,fuel,fuel,0.0,False,0.3525,32.56
+node/7016594019,GLOBAL ENERGY PETROL STATION,,fuel,fuel,0.0,False,0.3529,32.567
+node/7078258683,,,fuel,fuel,0.0,False,0.26596,32.54631
+node/7103214547,,,fuel,fuel,1.0,True,0.28659,32.54757
+node/7158290347,Stabex Buloba,stabex international,fuel,fuel,0.0,False,0.32682,32.46964
+node/7165591266,oilcom,,fuel,fuel,1.0,True,0.35785,32.53318
+node/7194227828,Stabex International,Stabex,fuel,fuel,0.0,False,0.39161,32.50449
+node/7221169712,Gasco,,fuel,fuel,0.0,False,0.37183,32.72738
+node/8256991218,Posh Gas Station,,fuel,fuel,0.0,False,0.39624,32.63638
+node/8261889731,Kobil,,fuel,fuel,0.0,False,0.35918,32.61739
+node/8289704315,,Shell,fuel,fuel,0.0,False,0.40122,32.54577
+node/8289750036,Oil Energy,Oil Energy,fuel,fuel,0.6,True,0.42015,32.53693
+node/8403799017,NESTA,Shell,fuel,fuel,0.39,False,0.34028,32.55407
+node/8412912225,,,fuel,fuel,0.0,False,0.39032,32.64188
+node/8420994518,,Shell,fuel,fuel,0.0,False,0.41113,32.57183
+node/8424244317,Geo Oils,,fuel,fuel,0.0,False,0.38004,32.6467
+node/8435293918,Trip Oils,,fuel,fuel,0.0,False,0.14513,32.5447
+node/8435294218,Shell Bwebajja,,fuel,fuel,0.0,False,0.16869,32.54283
+node/8435407017,Stabex Gas Station,,fuel,fuel,1.0,True,0.10642,32.5209
+node/8438796617,Luqman Fuel Station,,fuel,fuel,0.0,False,0.23143,32.55171
+node/8440766617,Ideal Energies,,fuel,fuel,0.0,False,0.25958,32.54609
+node/8440796418,Lead Oil,,fuel,fuel,0.0,False,0.35479,32.67905
+node/8440876520,Be Energy,,fuel,fuel,0.0,False,0.35119,32.76289
+node/8442076017,Hass Petroleum,,fuel,fuel,0.0,False,0.37629,32.62538
+node/8442102118,Classic,,fuel,fuel,0.0,False,0.38177,32.62617
+node/8456544548,Stabex,,fuel,fuel,0.0,False,0.44749,32.53021
+node/8456545028,DC Petroleum Kigoowa,,fuel,fuel,0.0,False,0.51546,32.52677
+node/8456545031,Rock Fill Fuel Station,,fuel,fuel,0.0,False,0.38957,32.55154
+node/8456546720,Shalru Fuesl Station,,fuel,fuel,0.0,False,0.3466,32.56752
+node/8456547329,SR,,fuel,fuel,0.0,False,0.49676,32.52267
+node/8457347320,Meru Fuel Station,,fuel,fuel,0.0,False,0.3628,32.80943
+node/8457369817,Gpex Fuels,,fuel,fuel,0.0,False,0.38858,32.84547
+node/8460245521,,Total,fuel,fuel,0.0,False,0.35657,32.61536
+node/8465163117,Shell Gas Station,,fuel,fuel,0.0,False,0.39681,32.63851
+node/8465189217,,,fuel,fuel,0.0,False,0.40029,32.63517
+node/8474481717,Stabex Fuel Station,,fuel,fuel,0.0,False,0.26394,32.56618
+node/8481591418,Stabex Kitende,,fuel,fuel,0.0,False,0.18626,32.5387
+node/8481604118,Dahab Fuel Station,,fuel,fuel,0.0,False,0.15606,32.5457
+node/8481604217,Shell Fuel Station,,fuel,fuel,0.0,False,0.16719,32.54316
+node/8481604317,Tosha fuel station,,fuel,fuel,1.0,True,0.18308,32.53835
+node/8481722718,By trust fuel,,fuel,fuel,0.0,False,0.35186,32.58047
+node/8482836720,Petrocity,,fuel,fuel,0.0,False,0.41482,32.59617
+node/8482859118,Prime Fuels,,fuel,fuel,0.53,True,0.38915,32.59284
+node/8482889917,,Shell,fuel,fuel,0.0,False,0.37535,32.58636
+node/8512515718,Oil Well,,fuel,fuel,0.0,False,0.39514,32.66645
+node/8512583317,Total Namugongo,,fuel,fuel,0.0,False,0.39316,32.66216
+node/8516171717,Agopex Gas Station,,fuel,fuel,0.0,False,0.4633,32.55513
+node/8524645682,Kafi Energy,,fuel,fuel,0.0,False,0.47015,32.65925
+node/8524649554,Eddie Petroleum,,fuel,fuel,0.0,False,0.4692,32.64861
+node/8524654792,Zaha Energy,Zaha Energy,fuel,fuel,0.0,False,0.49743,32.72781
+node/8524656823,Total Kasangati Gas Station,Total,fuel,fuel,0.0,False,0.43783,32.60236
+node/8526140918,KAKI petrol station,,fuel,fuel,0.94,True,0.31113,32.55689
+node/8536973117,Total Bulindo,,fuel,fuel,0.0,False,0.40854,32.64234
+node/8543055519,Gp Global Kira,,fuel,fuel,0.0,False,0.4005,32.64125
+node/8544156117,Hassie fuel,,fuel,fuel,0.0,False,0.12985,32.55642
+node/8556963117,,,fuel,fuel,0.0,False,0.39777,32.67382
+node/8556966518,Petrocity,,fuel,fuel,0.0,False,0.39628,32.69775
+node/8556999517,Africa Oil,,fuel,fuel,0.0,False,0.39483,32.70268
+node/8556999617,Stabex,,fuel,fuel,0.0,False,0.38913,32.70356
+node/8560748918,Khan,,fuel,fuel,0.0,False,0.54121,32.78917
+node/8560756417,Mogas,,fuel,fuel,0.0,False,0.50485,32.74986
+node/8560816917,Seka Energy,,fuel,fuel,0.0,False,0.53858,32.78545
+node/8560816920,Total Nakwero,,fuel,fuel,0.0,False,0.45999,32.63736
+node/8560816922,Nesta,,fuel,fuel,0.0,False,0.4568,32.61611
+node/8560817017,Oilibya,,fuel,fuel,0.0,False,0.51327,32.7674
+node/8575590119,Shell Gas Station,,fuel,fuel,0.0,False,0.31807,32.51081
+node/8575590319,Shell Fuel Station,,fuel,fuel,0.0,False,0.25073,32.62608
+node/8591833117,Hass Petroleum,Hass Petroleum,fuel,fuel,0.0,False,0.43246,32.60039
+node/8591888417,,,fuel,fuel,0.0,False,0.43969,32.59972
+node/8602714218,Total Bwaise Kikoni,,fuel,fuel,0.0,False,0.34832,32.56302
+node/8676693113,,,fuel,fuel,0.0,False,0.32554,32.53813
+node/8676779520,,,fuel,fuel,0.0,False,0.35951,32.69
+node/8683047382,,,fuel,fuel,0.0,False,0.29424,32.52815
+node/8684522819,Shell,Shell,fuel,fuel,0.0,False,0.37306,32.57629
+node/8684522944,JYRA,,fuel,fuel,0.0,False,0.36027,32.57714
+node/8684523026,Stabex,,fuel,fuel,0.0,False,0.38707,32.57818
+node/8690277687,,,fuel,fuel,0.0,False,0.32152,32.50416
+node/8690277719,,,fuel,fuel,0.0,False,0.3164,32.51161
+node/8691433329,,,fuel,fuel,0.0,False,0.35942,32.55576
+node/8711278218,MOGAS,MOGAS,fuel,fuel,0.0,False,0.39397,32.5809
+node/8742708217,GAZ,GAZ,fuel,fuel,0.4,False,0.36825,32.57623
+node/8747452810,HAS PETROL STATION,,fuel,fuel,0.0,False,0.29588,32.54434
+node/9053977917,Shell Buziga,,fuel,fuel,1.0,True,0.26251,32.61708
+node/9157824617,CADO,CADO,fuel,fuel,0.0,False,0.39213,32.58041
+node/9200127001,Moka energy,,fuel,fuel,0.0,False,0.25769,32.40465
+node/9200144678,Gasline,,fuel,fuel,0.0,False,0.25811,32.41265
+node/9200201240,,Petro Max,fuel,fuel,0.0,False,0.25388,32.39878
+node/9200207931,Be energy,,fuel,fuel,0.0,False,0.24943,32.38948
+node/9397335018,OilCom,,fuel,fuel,0.0,False,0.39719,32.58138
+node/9404592517,,,fuel,fuel,0.0,False,0.13674,32.54704
+node/9412355757,Kilinyabingo service station,,fuel,fuel,0.0,False,0.42477,32.5289
+node/9552392517,Marino Services,,fuel,fuel,0.0,False,0.4623,32.54928
+node/9687256617,Shell,Shell,fuel,fuel,0.0,False,0.44911,32.61171
+node/9794283322,Raas Fuel,,fuel,fuel,0.0,False,0.47709,32.55096
+node/9853606218,Kobil Kibuye,Kobil,fuel,fuel,0.0,False,0.29237,32.57224
+node/9853606617,Ideal Oil,,fuel,fuel,0.95,True,0.22836,32.57647
+node/9853606618,Goodluck Petrol Station,,fuel,fuel,0.0,False,0.24243,32.57237
+node/9865905218,Stabex,,fuel,fuel,0.0,False,0.09098,32.49625
+node/9957423518,Shell petrol station,,fuel,fuel,0.0,False,0.29803,32.53596
+node/9957553617,NFS,,fuel,fuel,0.0,False,0.28386,32.5176
+node/10685489482,stabex,,fuel,fuel,0.0,False,0.35311,32.55254
+node/11031714405,Min petro station,,fuel,fuel,0.0,False,0.40616,32.51186
+node/11047056006,Petro,,fuel,fuel,0.0,False,0.39775,32.4809
+node/11228518738,AAF fuel,,fuel,fuel,0.0,False,0.44631,32.56049
+node/11263944118,Total Kitagobwa,TotalEnergies,fuel,fuel,0.0,False,0.43363,32.5684
+node/11263991952,Mk Fuels,,fuel,fuel,0.0,False,0.43545,32.56752
+node/11536776931,Stabex,,fuel,fuel,0.0,False,0.44496,32.58298
+node/11536779323,Rama Energy,,fuel,fuel,0.0,False,0.4527,32.57223
+node/11755551930,RAMEX,RAMEX,fuel,fuel,0.0,False,0.43539,32.76135
+node/11755551931,,,fuel,fuel,0.0,False,0.44536,32.76071
+node/11755551932,Nipkol,,fuel,fuel,0.0,False,0.46271,32.75497
+node/11755551933,Lake Oil,Lake Oil,fuel,fuel,0.0,False,0.47254,32.75138
+node/11755551934,Rob Oils,Rob Oils,fuel,fuel,0.0,False,0.4875,32.75119
+node/11755551935,CTX,CTX,fuel,fuel,0.0,False,0.49125,32.75084
+node/11755551936,Elephant Oil,Elephant Oil,fuel,fuel,0.0,False,0.47091,32.70519
+node/11755551939,PRIME,,fuel,fuel,0.0,False,0.47854,32.67948
+node/11755551941,Prumic Energy,,fuel,fuel,0.0,False,0.47359,32.66372
+node/11755551942,DC Energy,DC Energy,fuel,fuel,0.0,False,0.46765,32.65107
+node/11755551943,IRMAN Petroleum,IRMAN Petroleum,fuel,fuel,0.0,False,0.4604,32.63453
+node/11755551944,ABLE,,fuel,fuel,0.0,False,0.45972,32.63075
+node/11755551945,STABEX,STABEX,fuel,fuel,0.0,False,0.4631,32.62514
+node/11755551948,Vision,Vision,fuel,fuel,0.0,False,0.44354,32.60912
+node/11755551949,Shire,Shire,fuel,fuel,0.0,False,0.44389,32.609
+node/11755551950,Torch Energy,Torch Energy,fuel,fuel,0.0,False,0.43961,32.6039
+node/11755551951,Golden Oil,,fuel,fuel,0.0,False,0.42719,32.59941
+node/11755551953,DON,,fuel,fuel,0.14,False,0.4227,32.59786
+node/11755551954,Vision Petroleum,,fuel,fuel,0.0,False,0.41321,32.59523
+node/11755551956,Byansi Energy,Byansi Energy,fuel,fuel,0.0,False,0.41081,32.59472
+node/11755551957,Torch Energy,Torch Energy,fuel,fuel,0.0,False,0.40634,32.5898
+node/11755551959,Byansi Energy,Byansi Energy,fuel,fuel,0.0,False,0.38905,32.57883
+node/11755551961,Super Fuels,,fuel,fuel,0.0,False,0.37772,32.5768
+node/11755551962,STABEX,STABEX,fuel,fuel,0.0,False,0.35879,32.57408
+node/11755551964,KAVANGO,,fuel,fuel,0.45,True,0.33207,32.57541
+node/11755551966,Shell,Shell,fuel,fuel,0.0,False,0.08072,32.48183
+node/12718126601,Emarat Oils,,fuel,fuel,0.0,False,0.38837,32.57566
+node/12775784701,,,fuel,fuel,0.0,False,0.47214,32.63176
+node/12778209911,Tusu Petro,,fuel,fuel,1.0,True,0.27846,32.47968
+node/13021393549,,,fuel,fuel,0.0,False,0.36481,32.58477
+node/13021855685,,,fuel,fuel,0.0,False,0.40909,32.629
+node/13031923038,,,fuel,fuel,0.0,False,0.3935,32.6409
+node/13389379602,Ramex Petroleum Fuel and Gas station,,fuel,fuel,0.0,False,0.49915,32.52211
+node/14106135082,Total Energies,TotalEnergies,fuel,fuel,0.47,False,0.39511,32.59359
+node/14156786001,HK FUEL STATION,,fuel,fuel,0.0,False,0.24621,32.52622
+node/14157084201,HYCARD,,fuel,fuel,0.0,False,0.25401,32.52009
+way/129191622,Shell,Shell,fuel,fuel,0.01,False,0.31583,32.59287
+way/195886588,Total Deluxe House,Total,fuel,fuel,0.0,False,0.31447,32.59074
+way/227483648,Oryx,,fuel,fuel,0.01,False,0.33279,32.56401
+way/228883727,Oilcom,Independent,fuel,fuel,0.0,False,0.29839,32.53476
+way/255708484,Petrocity,Petrocity,fuel,fuel,0.0,False,0.27534,32.61562
+way/293489941,,,fuel,fuel,0.0,False,0.30691,32.57994
+way/317890211,Petrocity,,fuel,fuel,0.0,False,0.28881,32.57735
+way/317890213,Kobil,Kobil,fuel,fuel,0.0,False,0.29034,32.57615
+way/317890214,Shell,Shell,fuel,fuel,0.0,False,0.2905,32.57523
+way/317901434,TOTAL NAMASUBA I SERVICE STATION,TOTAL UGANDA,fuel,fuel,0.0,False,0.26785,32.56592
+way/317901435,,Total,fuel,fuel,0.0,False,0.26704,32.56656
+way/317901436,Hass,,fuel,fuel,0.0,False,0.26213,32.56644
+way/317912294,Hared,,fuel,fuel,0.0,False,0.30484,32.58448
+way/317917298,Petro,,fuel,fuel,0.0,False,0.3132,32.5875
+way/317921268,,Total,fuel,fuel,0.0,False,0.35384,32.67135
+way/317999716,Oilibya,Oilibya,fuel,fuel,0.0,False,0.35456,32.67753
+way/317999724,Hass,,fuel,fuel,0.0,False,0.34274,32.63637
+way/318423314,,Total,fuel,fuel,0.85,True,0.32684,32.61106
+way/319169616,Petro,,fuel,fuel,0.0,False,0.3172,32.57012
+way/331473100,Kobil,Kobil,fuel,fuel,0.0,False,0.3132,32.56785
+way/331715030,,,fuel,fuel,0.0,False,0.30991,32.56462
+way/335815901,Oryx Energy,Orix,fuel,fuel,0.4,False,0.35227,32.59791
+way/337932675,Benzina Petroleum,Benzina,fuel,fuel,0.0,False,0.37873,32.5577
+way/356647423,Shell,Shell,fuel,fuel,0.0,False,0.0561,32.46542
+way/375890968,Mogas,,fuel,fuel,0.0,False,0.36412,32.75384
+way/376233438,Shell Busega,Hel,fuel,fuel,0.0,False,0.30617,32.51716
+way/378386229,BAM,,fuel,fuel,0.0,False,0.32487,32.56122
+way/381101801,City Oil,,fuel,fuel,0.0,False,0.31523,32.57065
+way/509010311,Total,Total,fuel,fuel,0.0,False,0.36079,32.75268
+way/568050397,Shell,Shell,fuel,fuel,0.0,False,0.30688,32.59899
+way/571111099,,,fuel,fuel,0.0,False,0.32066,32.54584
+way/571117777,DUP,,fuel,fuel,0.0,False,0.30352,32.52283
+way/666398937,Shell,Shell,fuel,fuel,0.0,False,0.35981,32.74867
+way/855261694,Total Najeera,Total,fuel,fuel,0.0,False,0.38554,32.62604
+way/1254853982,Petrol,,fuel,fuel,0.0,False,0.25827,32.40906
+way/1459900917,Bhanu Petro,,fuel,fuel,0.0,False,0.48506,32.52021
+way/1526801626,Kinaawa Filling Station,,fuel,fuel,1.0,True,0.27536,32.51458
+node/582967171,,,market,market,0.0,False,0.31334,32.63614
+node/582973291,,,market,market,0.0,False,0.31623,32.62614
+node/583262734,,,market,market,0.0,False,0.29664,32.60246
+node/585262989,Naiga City Chambers,,market,market,0.0,False,0.31349,32.57568
+node/601430317,Port Bell Marketplace,,market,market,0.0,False,0.29089,32.65477
+node/1511530848,,,market,market,0.0,False,0.30501,32.61506
+node/1741999926,,,market,market,0.0,False,0.34968,32.53661
+node/1788474307,,,market,market,0.0,False,0.3019,32.59436
+node/2087509800,Kasubi Market,,market,market,0.0,False,0.33264,32.55633
+node/2096292909,Lungujja Market,,market,market,0.0,False,0.30997,32.54084
+node/2857823671,kisasi market,,market,market,0.0,False,0.36996,32.60237
+node/3269428298,Munaku market,,market,market,0.0,False,0.32915,32.54957
+node/3550456865,Bweyogerere market,,market,market,0.0,False,0.35135,32.66033
+node/3727813191,Magala Market,,market,market,0.0,False,0.06762,32.46657
+node/4312956494,Dooba Enterprises Ltd,,market,market,0.0,False,0.31058,32.57937
+node/4443220645,The Creations Center,,market,market,0.0,False,0.32122,32.60352
+node/4535945174,Kitoro Market,,market,market,0.0,False,0.05771,32.46216
+node/5674770718,Kiira Community Market,,market,market,0.0,False,0.39401,32.63152
+node/5822370103,Wandegeya Market,,market,market,0.0,False,0.33103,32.57338
+node/5884752036,Nazareth Village Market,Nazareth Church,market,market,0.0,False,0.39833,32.60374
+node/5884794724,Kyanja Market,Community,market,market,0.0,False,0.39649,32.5936
+node/6478067910,Kiganda Market,Public,market,market,0.0,False,0.33141,32.64428
+node/7308243496,Ntinda Market,,market,market,0.0,False,0.35553,32.61352
+node/8185821040,Abaita Ababiri Main market,,market,market,0.0,False,0.09242,32.49964
+way/48508791,Ntinda Market,,market,market,0.0,False,0.34412,32.61603
+way/126220435,,,market,market,0.0,False,0.38038,32.55755
+way/138103265,,,market,market,0.0,False,0.30831,32.61237
+way/145226613,,,market,market,0.0,False,0.31144,32.60851
+way/161834654,Owino Market,,market,market,0.0,False,0.30983,32.57394
+way/217731174,,,market,market,0.0,False,0.28999,32.61814
+way/228707259,Usafi Market,,market,market,0.0,False,0.30495,32.57657
+way/274501418,Mukono Kiko Market,,market,market,0.0,False,0.35672,32.7518
+way/329420618,Nakasero Market Upper Section,,market,market,0.0,False,0.31178,32.57989
+way/332052675,,,market,market,0.0,False,0.34493,32.64409
+way/376238652,Busega Fish Market,,market,market,1.0,True,0.307,32.51675
+way/377708837,,,market,market,0.0,False,0.07056,32.47548
+way/377980012,New Taxi Park Market,,market,market,0.0,False,0.31351,32.57275
+way/386000396,Bwaise Farmers' Market,,market,market,0.0,False,0.35883,32.56103
+way/387936484,Daily Market,,market,market,0.0,False,0.27379,32.5465
+way/390045605,Shamba Complex,,market,market,0.0,False,0.31667,32.57265
+way/571119531,Busega Market,,market,market,0.0,False,0.30991,32.51687
+way/755953831,Katefalawo market,,market,market,0.0,False,0.3656,32.56062
+way/755953832,Kazo Angola central market,,market,market,0.0,False,0.36518,32.55882
+way/938018263,,,market,market,0.0,False,0.30777,32.51639
+way/1151175547,,,market,market,0.0,False,0.34464,32.63691
+way/1151175548,,,market,market,0.0,False,0.34149,32.63678
+way/1151176240,,,market,market,0.0,False,0.30966,32.59254
+way/1151176241,,,market,market,0.0,False,0.31289,32.59536
+way/1152399629,,,market,market,0.0,False,0.28873,32.60579
+way/1152406225,,,market,market,0.0,False,0.28861,32.60715
+way/1152407025,kalerwe business centre,,market,market,0.0,False,0.3503,32.57159
+way/1153406710,,,market,market,0.0,False,0.34517,32.57612
+way/1153411522,,,market,market,0.0,False,0.31634,32.54153
+way/1154263048,,,market,market,0.0,False,0.29964,32.60028
+way/1154268892,,,market,market,0.0,False,0.37566,32.56086
+way/1156608940,,,market,market,0.0,False,0.35972,32.55862
+way/1156617307,,,market,market,0.0,False,0.35108,32.55694
+way/1156618097,,,market,market,0.0,False,0.35294,32.59047
+way/1156623100,,,market,market,0.0,False,0.36061,32.55564
+way/1156967686,,,market,market,0.0,False,0.34673,32.59443
+way/1156967709,,,market,market,0.0,False,0.3471,32.5931
+way/1156972447,,,market,market,0.0,False,0.34791,32.59099
+way/1156972457,,,market,market,0.0,False,0.34842,32.59162
+way/1157127867,,,market,market,0.0,False,0.30637,32.65481
+way/1432609399,,,market,market,0.0,False,0.30852,32.57256
+node/601430575,Kirombe Bodaboda Stage,,transport_hub,transport_hub,0.0,False,0.30659,32.65365
+node/601431655,Butabika Stage,,transport_hub,transport_hub,0.0,False,0.31372,32.65922
+node/604686008,China Bodaboda Stage,,transport_hub,transport_hub,0.0,False,0.3308,32.63686
+node/606392663,Boda Stage Bugolobi Junction,,transport_hub,transport_hub,0.0,False,0.32009,32.62456
+node/825973328,Heritage Boda Boda Stage,,transport_hub,transport_hub,0.0,False,0.28653,32.61619
+node/1140358842,Yellow Taxi,,transport_hub,transport_hub,0.15,False,0.31975,32.59125
+node/1140358984,Blue Taxi,,transport_hub,transport_hub,0.0,False,0.3188,32.59206
+node/1522861848,IHK Boda Boda Stage,,transport_hub,transport_hub,0.0,False,0.30444,32.61125
+node/1623643509,,,transport_hub,transport_hub,0.0,False,0.30805,32.60673
+node/1735344156,Gombolola Boda Stage,,transport_hub,transport_hub,1.0,True,0.28193,32.5845
+node/1735351389,Nabanjja Boda Stage,,transport_hub,transport_hub,0.0,False,0.28355,32.58324
+node/1735520383,Madrisa Boda Stage,,transport_hub,transport_hub,0.0,False,0.28579,32.58115
+node/1735524328,Boda Stage: Musoke,,transport_hub,transport_hub,0.0,False,0.28711,32.57948
+node/1788480670,Boda-Boda Stage,,transport_hub,transport_hub,1.0,True,0.29946,32.60819
+node/2127260937,Cape Taxis,,transport_hub,transport_hub,0.0,False,0.25772,32.62807
+node/2270458246,Boda-Boda Stage,,transport_hub,transport_hub,0.0,False,0.29005,32.61801
+node/2297984606,Boda Boda,,transport_hub,transport_hub,0.0,False,0.29438,32.57756
+node/2317188381,Boda Boda Stage,,transport_hub,transport_hub,0.0,False,0.28426,32.60894
+node/2360456293,Kawanda Taxi Stage,,transport_hub,transport_hub,0.0,False,0.41519,32.53681
+node/2779078728,Boda-Boda Stage,,transport_hub,transport_hub,0.0,False,0.30386,32.55227
+node/3242172793,Boda Stage: Prayer Palace Christian Center,,transport_hub,transport_hub,0.0,False,0.29227,32.57377
+node/3242432512,Stella Stage,,transport_hub,transport_hub,0.0,False,0.279,32.56606
+node/3450099629,Kawempe Kutaano Stage,,transport_hub,transport_hub,0.0,False,0.37979,32.55733
+node/3550456859,boda boda stage,,transport_hub,transport_hub,0.0,False,0.34692,32.6609
+node/3727813177,Boda-Boda Stage,,transport_hub,transport_hub,0.0,False,0.07114,32.46046
+node/3728060938,Boda-Boda Stage,,transport_hub,transport_hub,0.0,False,0.07572,32.46262
+node/3748229044,Boda-Boda Stage,,transport_hub,transport_hub,0.0,False,0.32079,32.6124
+node/3798663922,Stairways Express Buspark,,transport_hub,transport_hub,0.0,False,0.31553,32.57802
+node/3804663373,Boda Boda Stage,,transport_hub,transport_hub,0.0,False,0.36113,32.5744
+node/3813890784,Kisenyi Bus Terminal,,transport_hub,transport_hub,0.0,False,0.31205,32.57262
+node/3942218900,Boda Boda stage Pilkington Road,,transport_hub,transport_hub,0.0,False,0.31407,32.58221
+node/3950443765,Kalerwe Taxi Park,,transport_hub,transport_hub,0.0,False,0.35255,32.57248
+node/3957720657,Busunju Stage,,transport_hub,transport_hub,0.0,False,0.31315,32.57045
+node/4000609511,Mbalala Market Boda Boda Stage,,transport_hub,transport_hub,0.0,False,0.36556,32.81522
+node/4001738191,Boda Boda Stage Nakawa Business Park,,transport_hub,transport_hub,0.0,False,0.32738,32.61173
+node/4003590425,Boda Boda Stage,,transport_hub,transport_hub,0.15,False,0.33544,32.61998
+node/4114161784,Bodaboda Stage,,transport_hub,transport_hub,0.0,False,0.25793,32.62828
+node/4443143889,Boda station 1st street,,transport_hub,transport_hub,0.0,False,0.32033,32.59873
+node/4484556959,,,transport_hub,transport_hub,0.39,False,0.32537,32.58256
+node/4927141502,Boda stage - Sir Albert Cook Road / Sekabaka Kintu Road,,transport_hub,transport_hub,0.0,False,0.3042,32.54594
+node/4928901387,Boda Boda stage - Old Masaka Road - Masaka Road,,transport_hub,transport_hub,0.0,False,0.29953,32.53248
+node/4940483521,Boda Boda stage - Mackenzie Vale,,transport_hub,transport_hub,0.0,False,0.33913,32.59617
+node/5148231371,Bodat station - Nanfumbambi Road - Kimara Road,,transport_hub,transport_hub,0.0,False,0.33495,32.56221
+node/5445168440,Boda Boda stage - ICT Village - AKright City,,transport_hub,transport_hub,0.0,False,0.16394,32.52695
+node/5453430848,Akright City Special stage,,transport_hub,transport_hub,0.0,False,0.16394,32.54351
+node/5526068128,Muchanga Road Boda Boda stage,,transport_hub,transport_hub,0.0,False,0.21017,32.54156
+node/5544913538,Boda Boda Stage Coville Street,,transport_hub,transport_hub,0.0,False,0.31459,32.58416
+node/5555354310,Nalukolongo Boda Stage,,transport_hub,transport_hub,0.0,False,0.29665,32.54203
+node/5558973088,Kabawo Market Boda stage,,transport_hub,transport_hub,0.0,False,0.29293,32.53962
+node/5575564438,Boda Boda stage - Freedom City,Boda Boda,transport_hub,transport_hub,0.0,False,0.27444,32.56522
+node/5599832223,Namayiba Bus Terminal,,transport_hub,transport_hub,0.0,False,0.31936,32.57053
+node/5912110375,,,transport_hub,transport_hub,0.0,False,0.25564,32.63124
+node/6272323579,,,transport_hub,transport_hub,0.4,False,0.43397,32.53432
+node/6435610274,Mirembe Stage,,transport_hub,transport_hub,0.0,False,0.44731,32.61194
+node/7056609301,Nilestar bus park,,transport_hub,transport_hub,0.0,False,0.32014,32.57344
+node/7100592261,Friendship taxi (U) Ltd,,transport_hub,transport_hub,0.0,False,0.29257,32.55093
+node/7144181101,Gganda Boda Boda stage,,transport_hub,transport_hub,0.0,False,0.34441,32.52415
+node/7144181103,Nasere Boda Boda stage,,transport_hub,transport_hub,0.0,False,0.33959,32.52467
+node/7165671606,,,transport_hub,transport_hub,0.02,False,0.3818,32.51901
+node/7181938488,,,transport_hub,transport_hub,0.0,False,0.38101,32.51923
+node/7700216415,Ndejje Taxi Park,,transport_hub,transport_hub,0.0,False,0.26319,32.56714
+node/7724357558,Kitaka Stage,,transport_hub,transport_hub,0.0,False,0.35829,32.59349
+node/8283063483,Bussi Island - Shoebill Pier Zziba,,transport_hub,transport_hub,0.0,False,0.07556,32.35007
+node/8881589851,Kololo Hill lane boda boda stage,,transport_hub,transport_hub,0.0,False,0.33457,32.59348
+node/10050942983,Namanve,,transport_hub,transport_hub,0.0,False,0.35151,32.6785
+node/10611831905,,,transport_hub,transport_hub,0.0,False,0.34633,32.56881
+node/11043686846,,,transport_hub,transport_hub,0.0,False,0.35707,32.62035
+node/11043686847,,,transport_hub,transport_hub,0.0,False,0.36161,32.62094
+node/11755551965,Nyanzi boda boda stage,,transport_hub,transport_hub,0.45,True,0.33138,32.54273
+node/13805832374,,,transport_hub,transport_hub,0.0,False,0.06506,32.47385
+way/211099518,Kabuuka Boda Boda Stage,,transport_hub,transport_hub,0.0,False,0.2869,32.62458
+way/376641853,Mulago Hospital,,transport_hub,transport_hub,0.0,False,0.33523,32.57764
+way/377101715,,,transport_hub,transport_hub,0.0,False,0.35663,32.57344
+way/391305779,Kigagga Taxi Park,,transport_hub,transport_hub,0.0,False,0.30049,32.5278
+way/512648956,Mukono Taxi Park,,transport_hub,transport_hub,0.0,False,0.3584,32.75207

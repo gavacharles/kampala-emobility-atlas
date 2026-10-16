@@ -1,0 +1,14 @@
+parameter,base,low,high,source
+petrol_price_ugx_per_l,6650.0,5100.0,7000.0,"Daily Monitor market surveillance, Kampala, 8 Sep 2026 (6,650); range from Apr-Sep 2026 reporting"
+ice_km_per_l,12.0,9.0,16.0,ASSUMPTION: used 1.3-1.8 L Japanese import in Kampala traffic
+ev_kwh_per_km,0.17,0.14,0.22,"Nissan Leaf-class consumption incl. ~10% charging losses; hot climate, aged battery"
+home_tariff_ugx_per_kwh,779.4,562.0,950.0,"UEDCL domestic tariff above lifeline, Oct-Dec 2026 (Daily Monitor); low = commercial average"
+public_dc_ugx_per_kwh,1500.0,1000.0,2500.0,ASSUMPTION: no published Kampala DC fast-charging price (pilot at Amber House)
+ice_maint_ugx_per_km,150.0,100.0,250.0,"ASSUMPTION: service, oil, brakes, engine/gearbox repairs"
+ev_maint_ugx_per_km,70.0,40.0,120.0,"ASSUMPTION: tyres, brakes, suspension; no engine service"
+battery_reserve_ugx_per_km,60.0,0.0,150.0,ASSUMPTION: provision for degradation/replacement of a used imported pack
+range_per_charge_km,150.0,110.0,200.0,Usable km per DC session (20-80%+) for a used 40 kWh-class car
+dc_session_min,40.0,25.0,70.0,ASSUMPTION: queue + 30-50 kW charge; pilot station offers 30-360 kW
+ev_purchase_premium_ugx,12000000.0,0.0,30000000.0,"ASSUMPTION: landed price gap after 25% import duty (fully built EVs, reinstated 2024)"
+discount_rate,0.15,0.1,0.22,ASSUMPTION: Ugandan vehicle-loan / opportunity cost of capital
+horizon_years,5.0,3.0,7.0,ASSUMPTION: holding period of a used import

@@ -1,0 +1,11 @@
+parameter,base,low,high,source
+petrol_price_ugx_per_l,6650,5100,7000,"Daily Monitor market surveillance, Kampala, 8 Sep 2026 (6,650); range from Apr-Sep 2026 reporting"
+petrol_km_per_l,40,30,50,ASSUMPTION: 125-150cc commuter motorcycle in stop-start urban traffic
+daily_km,65,40,120,"~18 trips/day x ~3 km (Transitec & Transport for Cairo for AFD/KCCA, Analysis of Boda-Boda Operations, 2020) plus empty running"
+swap_price_ugx_per_full,8400,5000,8500,"Spiro Shs 84 per % charge = 8,400 per full battery (Sep 2026); Gogo ~5,000 and Zembo ~6,000 (2024)"
+battery_range_km,90,75,100,Operators quote ~100 km per full battery; a Jinja riders' association reports ~85 km
+petrol_maintenance_ugx_per_day,2500,1500,4000,"ASSUMPTION: oil, filters, chain, plugs, engine repairs averaged per working day"
+electric_maintenance_ugx_per_day,1000,500,2000,ASSUMPTION: no engine oil/fuel system; battery maintenance borne by the swap operator
+rider_earnings_ugx_per_hour,3500,2500,5000,"ASSUMPTION: ~35,000 net per 10-hour day; values detour and queueing time"
+swap_wait_min,8,3,20,ASSUMPTION: time at the station per swap (queue + exchange)
+detour_speed_kmh,20,15,25,ASSUMPTION: average urban boda speed when riding empty to a station

@@ -1,0 +1,85 @@
+{
+  "environment": {
+    "scene": "S2A_36NVF_20260629_0_L2A",
+    "scene_datetime": "2026-06-29T08:20:18.020000Z",
+    "scene_cloud_pct": 1.147571,
+    "elev_range_m": [
+      1083.084228515625,
+      1340.5487060546875
+    ],
+    "pop_share_in_steep_cells_gt8deg": 0.05715537758867937,
+    "pop_share_low_lying_gt25pct": 0.027332209988087174,
+    "corr_ndbi_boda": 0.7042994366190135,
+    "corr_ndvi_boda": -0.7509069097962825,
+    "corr_ndbi_car": 0.53497630460598
+  },
+  "screen_swap": {
+    "suitable": 55,
+    "steep: civil works": 5
+  },
+  "screen_charger": {
+    "suitable": 30
+  },
+  "median_dist_mapped_power_line_m": 793.3032756336572,
+  "grid_class_swap": {
+    "10pct": {
+      "dedicated transformer": 56,
+      "LV supply": 4
+    },
+    "25pct": {
+      "dedicated transformer": 39,
+      "MV connection": 21
+    },
+    "50pct": {
+      "MV connection": 53,
+      "dedicated transformer": 7
+    }
+  },
+  "grid_class_charger": {
+    "500cars": {
+      "dedicated transformer": 30
+    },
+    "2000cars": {
+      "dedicated transformer": 27,
+      "MV connection": 3
+    },
+    "5000cars": {
+      "MV connection": 18,
+      "dedicated transformer": 12
+    }
+  },
+  "ops_swap": {
+    "10pct": {
+      "swaps_day_total": 28888.0,
+      "cabinets_total": 480.0,
+      "grid_mw_total": 6.980700000000001,
+      "max_site_swaps": 993.0
+    },
+    "25pct": {
+      "swaps_day_total": 72217.0,
+      "cabinets_total": 1158.0,
+      "grid_mw_total": 17.451900000000006,
+      "max_site_swaps": 2481.0
+    },
+    "50pct": {
+      "swaps_day_total": 144431.0,
+      "cabinets_total": 2287.0,
+      "grid_mw_total": 34.9044,
+      "max_site_swaps": 4963.0
+    }
+  },
+  "ops_charger": {
+    "500cars": {
+      "dc_ports_total": 36.0,
+      "grid_mw_total": 2.16
+    },
+    "2000cars": {
+      "dc_ports_total": 98.0,
+      "grid_mw_total": 5.88
+    },
+    "5000cars": {
+      "dc_ports_total": 228.0,
+      "grid_mw_total": 13.68
+    }
+  }
+}
