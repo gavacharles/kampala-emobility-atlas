@@ -5,6 +5,7 @@ Writes figures/*.png and figures/*.gif.
 """
 
 import json
+import textwrap
 from pathlib import Path
 
 import geopandas as gpd
@@ -104,8 +105,58 @@ def cbar(fig, ax, im, label):
     return cb
 
 
+# Footer attribution for every figure (licences in DATA_LICENSE.md).
+OSM = "© OpenStreetMap contributors (ODbL)"
+WORLDPOP = "WorldPop 2025 (CC BY 4.0)"
+BUILDINGS = "Microsoft Building Footprints (ODbL)"
+S2 = "contains modified Copernicus Sentinel-2 data (2026)"
+DEM = "Copernicus DEM GLO-30 (© DLR, Airbus; ESA)"
+PRICES = "published fuel, tariff and swap prices, 2026"
+MODEL = "author's model"
+CREDIT = "Credit: Gava Charles"
+SOURCES = {
+    "fig01_study_area": (OSM, WORLDPOP),
+    "fig02_suitability_indices": (OSM, WORLDPOP, BUILDINGS, MODEL),
+    "fig03_robustness_hotspots": (OSM, WORLDPOP, BUILDINGS, MODEL),
+    "fig04_wealth_proxy": (BUILDINGS, OSM, MODEL),
+    "fig05_siting_coverage": (OSM, WORLDPOP, MODEL),
+    "fig06_site_robustness": (OSM, WORLDPOP, MODEL),
+    "fig07_access_by_ring": (OSM, WORLDPOP, BUILDINGS, PRICES, MODEL),
+    "fig08_equity_wealth": (OSM, WORLDPOP, BUILDINGS, MODEL),
+    "fig09_economics_uncertainty": (PRICES, MODEL),
+    "fig10_scenarios_petrol_network": (OSM, WORLDPOP, PRICES, MODEL),
+    "fig11_car_charger_siting": (OSM, WORLDPOP, BUILDINGS, MODEL),
+    "fig12_home_charging": (BUILDINGS, OSM, MODEL),
+    "fig13_car_economics": (PRICES, MODEL),
+    "fig14_equity_boda_vs_car": (OSM, WORLDPOP, BUILDINGS, MODEL),
+    "fig15_car_saving_network_size": (OSM, WORLDPOP, BUILDINGS, PRICES, MODEL),
+    "gis01_satellite_proposed_networks": (S2, OSM, MODEL),
+    "gis02_satellite_central_kampala": (S2, OSM, MODEL),
+    "gis03_remote_sensing_indices": (S2, OSM),
+    "gis04_terrain_elevation_slope": (DEM, OSM, MODEL),
+    "gis05_flood_wetland_screen": (DEM, OSM, MODEL),
+    "gis06_power_infrastructure": (OSM, DEM, MODEL),
+    "gis07_swap_catchments": (OSM, WORLDPOP, MODEL),
+    "gis08_charger_catchments": (OSM, WORLDPOP, BUILDINGS, MODEL),
+    "gis09_road_network": (OSM,),
+    "gis10_remote_sensing_validation": (S2, OSM, WORLDPOP, BUILDINGS, MODEL),
+}
+
+
+def footer(*sources):
+    return "Data: " + "; ".join(sources) + ".   " + CREDIT
+
+
+def credit(fig, sources, y=-0.01, fontsize=6.5):
+    """Source and credit line under the figure (y < 0 sits below the axes; bbox='tight' keeps it)."""
+    width = int(fig.get_figwidth() * 72 / (fontsize * 0.52))  # characters that fit across the figure
+    text = "\n".join(textwrap.wrap(footer(*sources), width))
+    fig.text(0.01, y, text, ha="left", va="top", fontsize=fontsize, color=INK3, linespacing=1.3)
+
+
 def save(fig, name):
     FIG.mkdir(exist_ok=True)
+    credit(fig, SOURCES[name])
     fig.savefig(FIG / f"{name}.png", facecolor="white")
     plt.close(fig)
     print("wrote", name)
@@ -313,6 +364,7 @@ def anim_buildout(g, roads):
     title = ax.set_title("", loc="left")
     big = ax.text(0.02, 0.97, "", transform=ax.transAxes, fontsize=20, fontweight="bold", color=INK, va="top", zorder=9)
     small = ax.text(0.02, 0.89, "", transform=ax.transAxes, fontsize=8, color=INK2, va="top", zorder=9)
+    credit(fig, (OSM, WORLDPOP, MODEL), y=0.02, fontsize=6)
     frames = list(range(0, len(sp) + 1)) + [len(sp)] * 12
 
     def update(k):
@@ -341,6 +393,7 @@ def anim_population(g, roads):
     big = ax.text(0.02, 0.97, "", transform=ax.transAxes, fontsize=20, fontweight="bold", color=INK, va="top", zorder=9)
     small = ax.text(0.02, 0.89, "", transform=ax.transAxes, fontsize=8, color=INK2, va="top", zorder=9)
     ax.set_title("Greater Kampala population, WorldPop 2020 → 2030 (2030 projected)", loc="left")
+    credit(fig, (WORLDPOP, OSM), y=0.02, fontsize=6)
     years = list(np.linspace(2020, 2030, 41)) + [2030] * 10
 
     def update(y):
@@ -502,6 +555,7 @@ def anim_charger_buildout(g, roads):
     im = ax.imshow(grid_array(g, np.full(len(g), np.nan)), origin="lower", extent=(x0, x1, y0, y1), cmap=CM_ORANGE, vmin=0, vmax=vmax, zorder=1)
     dots = ax.scatter([], [], s=24, marker="s", c=INK, edgecolor="white", linewidth=0.6, zorder=8)
     ax.set_title("Building a Kampala e-car fast-charging network, one site at a time", loc="left")
+    credit(fig, (OSM, WORLDPOP, BUILDINGS, MODEL), y=0.02, fontsize=6)
     big = ax.text(0.02, 0.97, "", transform=ax.transAxes, fontsize=20, fontweight="bold", color=INK, va="top", zorder=9)
     small = ax.text(0.02, 0.89, "", transform=ax.transAxes, fontsize=8, color=INK2, va="top", zorder=9)
     frames = list(range(0, len(sp) + 1)) + [len(sp)] * 10
