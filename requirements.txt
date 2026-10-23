@@ -1,6 +1,7 @@
 branca==0.8.2
 folium==0.20.0
 geopandas==1.0.1
+imageio-ffmpeg==0.6.0
 matplotlib==3.9.4
 numpy==2.0.2
 pandas==2.3.3

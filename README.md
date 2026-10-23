@@ -69,6 +69,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 | Remote sensing, terrain, grid, catchments, operations | `run_gis.py` | `outputs/gis/` |
 | Paper figures and GIFs | `make_figures.py` | `figures/fig*.png`, `figures/anim_*.gif` |
 | GIS maps | `make_gis_maps.py` | `figures/gis*.png` |
+| Social animations and Substack cover | `make_social.py` | `figures/social/q*.gif`, `figures/social/q*.mp4`, `figures/cover_substack.png` |
 | Interactive atlas and website | `build_dashboard.py` | `outputs/kampala_emobility_atlas.html`, `docs/` |
 
 All weights, radii and thresholds are in [`config.py`](config.py). Economic inputs and sources are in [`emobility/economics.py`](emobility/economics.py) (e-bodas) and [`emobility/car_economics.py`](emobility/car_economics.py) (e-cars).
