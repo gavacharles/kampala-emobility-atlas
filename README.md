@@ -24,16 +24,6 @@
 | Who's left out | Peri-urban riders lose UGX 3,552/day with 10 sites; coverage 93% in the core vs 11% beyond 20 km | No coverage beyond 20 km with 10 sites; home charging concentrated in the wealthiest areas |
 | Grid | 17.5 MW and 21 medium-voltage connections at 25% motorcycle electrification | 5.9 MW and 98 ports for 2,000 e-ride-hail cars |
 
-## Proposed locations
-
-Every proposed site has coordinates, a build-order rank, its catchment by road, daily demand, equipment and grid connection, slope and height above the valley floor:
-
-- [`outputs/gis/swap_station_plan.csv`](outputs/gis/swap_station_plan.csv): 60 e-boda swap sites
-- [`outputs/gis/charger_station_plan.csv`](outputs/gis/charger_station_plan.csv): 30 e-car fast-charging sites
-- [`outputs/gis/kampala_emobility_gis.gpkg`](outputs/gis/kampala_emobility_gis.gpkg): all GIS layers for QGIS/ArcGIS (grid scores and environment, proposed sites, power lines and points, wetlands)
-
-![Central Kampala: proposed sites on Sentinel-2 imagery](figures/gis02_satellite_central_kampala.png)
-
 ## Maps and figures
 
 **GIS, satellite, terrain and infrastructure**
@@ -73,37 +63,6 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 | Interactive atlas and website | `build_dashboard.py` | `outputs/kampala_emobility_atlas.html`, `docs/` |
 
 All weights, radii and thresholds are in [`config.py`](config.py). Economic inputs and sources are in [`emobility/economics.py`](emobility/economics.py) (e-bodas) and [`emobility/car_economics.py`](emobility/car_economics.py) (e-cars).
-
-### Data
-
-OpenStreetMap layers, the Sentinel-2 scene and the Copernicus DEM are fetched and cached automatically. Two large files need a one-off download, because the WorldPop server is slow and doesn't support resuming:
-
-```bash
-mkdir -p data/raw/worldpop data/raw/buildings
-for y in 2020 2025 2030; do curl -L -o data/raw/worldpop/uga_pop_$y.tif \
-  "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/$y/UGA/v1/100m/constrained/uga_pop_${y}_CN_100m_R2025A_v1.tif"; done
-curl -L -o data/raw/buildings/ms_buildings_122323332.csv.gz \
-  "https://minedbuildings.z5.web.core.windows.net/global-buildings/2026-02-03/global-buildings.geojsonl/RegionName=Uganda/quadkey=122323332/part-00106-4feead82-d499-422b-94cb-c036c212127a.c000.csv.gz"
-```
-
-macOS's system Python links an old LibreSSL that can't reach the Overpass API, so the pipeline calls `curl` for HTTP.
-
-### Adding real stations
-
-1. **Google Maps (Places API):** `export GOOGLE_MAPS_API_KEY=...` then `.venv/bin/python collect_stations_google.py`. Google's terms limit caching coordinates to 30 days, so the output is git-ignored.
-2. **By hand or field survey:** add rows to [`data/manual/ev_stations.csv`](data/manual/ev_stations.csv).
-
-Then set `SITING_INCLUDE_EXISTING = True` in `config.py` so new sites fill gaps around existing ones.
-
-## Method in brief
-
-- **Grid:** 1 km cells in UTM 36N; 1,968 scored cells, 6.45 million residents.
-- **Indices:** weighted percentile ranks; 1,000 Dirichlet weight redraws for robustness; Moran's I and Getis–Ord Gi* with FDR control; validated against Sentinel-2 NDBI/NDVI.
-- **Proxies:** housing wealth and home-charging potential from open space per building and home size in 1.2 million building footprints. Building size alone failed validation, because merged informal roofs looked like mansions.
-- **Siting:** greedy maximal coverage on a 652,196-node road graph, benchmarked against exact MCLP optima (SciPy HiGHS), random networks and a fuel-station-only pool, with robustness to the weights.
-- **Screening:** slope ≤ 8°, ≥ 3 m above the local valley floor (HAND-like), outside mapped wetlands, and grid connection class graded by peak load.
-- **Operations:** road-network catchments; swaps/day, cabinets and MW under 10/25/50% motorcycle electrification; DC ports for 500/2,000/5,000 e-ride-hail cars.
-- **Economics:** e-boda daily running cost with detour and queue costs; e-car 5-year NPV for private and ride-hail use; Monte Carlo (5,000 draws), tornado sensitivity, petrol-price × network-size scenarios.
 
 ## Licence and citation
 
