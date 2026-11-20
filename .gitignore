@@ -8,3 +8,9 @@ data/raw/
 
 # Google Places results may only be cached for 30 days under Google's terms; never commit them
 data/manual/ev_stations_google.csv
+
+# Paper drafts and write-ups are kept private (moved 2026-11-20)
+/papers/paper1_siting_open_data.md
+/papers/paper2_economics_equity.md
+/outreach/linkedin_post.md
+/outreach/substack_post.md
